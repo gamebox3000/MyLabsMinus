@@ -16,6 +16,9 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        ProblemGenerator gen = new ProblemGenerator("add", 12);
+        System.out.println(gen.get_Problem()+"="+gen.get_answer());
+        
     }
     
 }
