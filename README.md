@@ -1,2 +1,2 @@
-# 1020Project
+# MyLabsMinus
 CISP1020group1project
