@@ -21,7 +21,7 @@ public class Message {
     private String message; //a message field that holds the prompt content of the message.
     
     /**Needs Aaron**/
-    private static final String NEEDS = "PLACEHOLDER"; //fine for this class, but needs to be implemented in subclasses
+    private String needs; //fine for this class, but needs to be implemented in subclasses
     
     //current input is the result of the scanner.
     private String currentInput;
@@ -29,12 +29,14 @@ public class Message {
     //empty constuctor.
     public Message() {
         message = "";
+        needs = "";
         input = new Scanner(System.in);
         app = new MyLabsMinusApp();
     }
     //constructor that allows user to specify the message content and the receiving application object.
-    public Message(String message, MyLabsMinusApp app) {
+    public Message(String message, String needs, MyLabsMinusApp app) {
         this.message = message;
+        this.needs = needs;
         input = new Scanner(System.in);
         this.app = app;
     }
@@ -78,9 +80,7 @@ public class Message {
                 success = true;
                 //runs if input does not pass validation
             } else {
-                
-                /**Needs Aaron**/
-                message = "Invalid input. Required: " + NEEDS; //implementation needed elsewhere in subclasses
+                printNeeds(); //prints error and reprompts
             }
         }
         //reloads original message 
@@ -136,6 +136,12 @@ public class Message {
     }
     //Returns the list of needs used in the validation process
     public String getNeeds() {
-        return NEEDS;
+        return needs;
+    }
+    public void setNeeds(String newNeeds) {
+        needs = newNeeds;
+    }
+    public void printNeeds() {
+        System.out.println(needs + "\n");
     }
 }

@@ -14,7 +14,7 @@ import messages.Message;
 public class MessageConfirm extends Message{
     public MessageConfirm(MyLabsMinusApp app) {
         //predefined message
-        super("Are the following details correct?", app);
+        super("Are the following details correct?", "Please enter a \'yes\' or a \'no\'.", app);
     }
     @Override
     public boolean runOverride() {

@@ -17,7 +17,7 @@ public class MessageNumStudents extends Message{
     private int userCoordinates;
     public MessageNumStudents(MyLabsMinusApp app) {
         //pre-defined text
-        super ("How many students are you going to supervise?", app);
+        super ("How many students are you going to supervise?", "Please enter a non-negative number.",app);
     }
     //returns user data position
     public int getUserCoordinates() {
@@ -27,23 +27,22 @@ public class MessageNumStudents extends Message{
     public void setUserCoordinates(int newUserCoordinates) {
         userCoordinates = newUserCoordinates;
     }
-    
     @Override
     public boolean runOverride() throws NumberFormatException{
-        if (!getCurrentInput().isEmpty()) {
-            /**Needs Anthony's code**/
-            //will set the number of student slots available for the user
-            /*try {
-                ((Teachers)app.getUserArray()[1].get(userCoordinates)).setNumOfStudents(Integer.parseInt(getCurrentInput());
-            } catch (NumberFormatException ex) {
+            
+        //will set the number of student slots available for the user
+        try {
+            if (Integer.parseInt(getCurrentInput()) >= 0) {
+                
+                /**Needs Anthony's code**/
+                //((Teachers)app.getUserArray()[1].get(userCoordinates)).setNumOfStudents(Integer.parseInt(getCurrentInput());
+                
+                app.printMessage(12, true);
+                return true;
+            } else {
                 return false;
             }
-            */
-            
-            //starts the end of the account creation chain.
-            app.printMessage(12, true);
-            return true;
-        } else {
+        } catch (NumberFormatException ex) {
             return false;
         }
     }

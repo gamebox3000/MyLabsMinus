@@ -17,23 +17,28 @@ import app.MyLabsMinusApp;
 public class MessageOpen extends Message {
     public MessageOpen(MyLabsMinusApp app) {
         //Creates predefined message
-        super("Welcome to MyLabsMinus\nFrom here you can either login or create a new account.\nPlease indicate your choice by entering the corresponding number:\n1. Login\n2. New User", app);
+        super("Welcome to MyLabsMinus\nFrom here you can either login or create a new account.\nPlease indicate your choice by entering the corresponding number:\n1. Login\n2. New User", "Please enter either a 1 or 2, indicating your choice.", app);
     }
     //has user pick between two options. Must be number. String triggers validation
     @Override
     public boolean runOverride() throws NumberFormatException{
-        try {
-            switch (Integer.parseInt(getCurrentInput())) {
-                //Branches to login 
-                case 1: app.printMessage(1, true);
-                        return true;
-                //Branches to account creation
-                case 2: app.printMessage(2, true);
-                        return true;
+        String cPut = getCurrentInput();
+        if (!cPut.isEmpty()) {
+            try {
+                switch (Integer.parseInt(cPut)) {
+                    //Branches to login 
+                    case 1: app.printMessage(1, true);
+                    return true;
+                    //Branches to account creation
+                    case 2: app.printMessage(2, true);
+                    return true;
+                    default: return false;
+                }
+            } catch (NumberFormatException ex) {
+                return false;
             }
-        } catch (NumberFormatException ex) {
+        } else {
             return false;
         }
-        return false;
     }
 }

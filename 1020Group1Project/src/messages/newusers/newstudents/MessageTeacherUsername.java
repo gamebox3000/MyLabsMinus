@@ -14,16 +14,21 @@ import messages.Message;
  */
 //Prompts student for teacher selection
 public class MessageTeacherUsername extends Message{
+    //An array that orders the available teachers 
+    
+    /**Needs Anthony's code**/
+    //Teacher[] available = new Teacher[];
+    
     //Tracks user data
     private int userCoordinates;
     public MessageTeacherUsername(MyLabsMinusApp app) {
         /**Needs Aaron**/
         //Will print out prompt with dynamic list of available teachers 
-        super ("PLACEHOLDER", app);
+        super ("PLACEHOLDER", "Please enter an positive integer indicating your choice out of those presented below.", app);
         /*
-        String fullMessage = "Please select between the available teachers below:";
+        getMessage() = "Please select between the available teachers below:";
         for (int i = 1; i <= app.getUserArray()[1].size(); i++) {
-            fullMessage += "\n" + i + "." + app.getUserArray()[1].get(i);
+            getMessage() += "\n" + i + "." + app.getUserArray()[1].get(i);
         }
         */
     }
@@ -36,7 +41,7 @@ public class MessageTeacherUsername extends Message{
         userCoordinates = newUserCoordinates;
     }
     @Override
-    public boolean runOverride() {
+    public boolean runOverride() throws NumberFormatException{
         //Empty String validation
         if (!getCurrentInput().isEmpty()) {
             

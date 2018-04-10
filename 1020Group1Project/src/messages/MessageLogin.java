@@ -19,7 +19,7 @@ import app.*;
 public class MessageLogin extends Message{
     //Creates predefined message.
     public MessageLogin(MyLabsMinusApp app) {
-        super("Please enter your username to login", app);
+        super("Please enter your username to login", "Username not found.", app);
     }
     @Override
     public boolean runOverride() {

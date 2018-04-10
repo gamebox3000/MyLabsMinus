@@ -17,7 +17,7 @@ import app.MyLabsMinusApp;
 public class MessageWizard extends Message {
     public MessageWizard(MyLabsMinusApp app) {
         //predefined message
-        super("Are you a:\n1. Student\n2. Teacher\n3. Parent", app);
+        super("Are you a:\n1. Student\n2. Teacher\n3. Parent", "Please enter a 1, 2, or 3, indicating your choice.", app);
     }
     @Override
     //Only integers. Strings triger validation.

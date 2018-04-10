@@ -17,7 +17,7 @@ public class MessageChildUsername extends Message{
     private int userCoordinates;
     public MessageChildUsername(MyLabsMinusApp app) {
         //predefined text.
-        super ("Enter your student's username", app);
+        super ("Enter your student's username", "Username not found. Please try agian.", app);
     }
     //returns user data position
     public int getUserCoordinates() {
