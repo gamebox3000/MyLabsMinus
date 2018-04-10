@@ -17,7 +17,7 @@ public class MessageGradeLevel extends Message{
     private int userCoordinates; 
     public MessageGradeLevel(MyLabsMinusApp app) {
         //pre-defined text
-        super ("Please enter your grade level", app);
+        super ("Please enter your grade level", "Please enter a K/0, 1, 2, 3, 4, or 5, indicating your current grade level.", app);
     }
     //returns user data coordinates
     public int getUserCoordinates() {
@@ -33,13 +33,20 @@ public class MessageGradeLevel extends Message{
         /**Needs Anthony's code**/
         //will set student grade level
         if (!getCurrentInput().isEmpty()) {
-            /*try {
-                ((Student)app.getUserArray()[0].get(userCoordinates)).setGradeLevel(Integer.parseInt(getCurrentInput()));
-            } catch (NumberFormatException ex) {
-                return false;
+            if (getCurrentInput().equals("k") || getCurrentInput().equals("K")) {
+                app.printMessage(8, true);
+                //app,getUserArray()[0].get(userCoordinates).setGradeLevel(0);
+            } else {
+                try {
+                    if (Integer.parseInt(getCurrentInput()) >= 0) {
+                        //((Student)app.getUserArray()[0].get(userCoordinates)).setGradeLevel(Integer.parseInt(getCurrentInput()));
+                    } else {
+                        return false;
+                    }
+                } catch (NumberFormatException ex) {
+                    return false;
+                }
             }
-            */
-            
             //passes onto teacher selection
             app.printMessage(8, true);
             return true;

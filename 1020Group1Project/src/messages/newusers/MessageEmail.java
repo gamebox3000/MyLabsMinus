@@ -16,7 +16,7 @@ public class MessageEmail extends Message{
     public int[] userCoordinates = new int[2];
     public MessageEmail(MyLabsMinusApp app) {
         //predefined content
-        super ("Please enter your email", app);
+        super ("Please enter your email", "", app);
     }
     //returns user data position
     public int[] getUserCoordinates() {

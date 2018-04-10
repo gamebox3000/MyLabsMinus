@@ -18,7 +18,7 @@ public class MessageUsername extends Message{
     private int[] userCoordinates = new int[2];
     public MessageUsername(MyLabsMinusApp app) {
         //predefined text
-        super("Please enter a unique username", app);
+        super("Please enter a unique username", "Username is already taken. Try another one.", app);
     }
     //returns user data position
     public int[] getUserCoordinates() {
