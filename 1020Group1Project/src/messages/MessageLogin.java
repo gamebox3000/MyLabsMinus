@@ -2,6 +2,7 @@ package messages;
 
 
 import app.*;
+import users.User;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -23,18 +24,15 @@ public class MessageLogin extends Message{
     }
     @Override
     public boolean runOverride() {
-        /**Needs Anthony's code**/
         //will track if username search was sucessful or not
         boolean matched = false;
-        /*
         for (int i = app.getUserArray().length; i > 0; i--) {
             for(int e = app.getUserArray()[i].size(); e > 0; e--) {
-                //if (getCurrentInput().equals(app.getUserArray()[i].get(e)).getUsername()) {
+                if (getCurrentInput().equals(((User)app.getUserArray()[i].get(e)).getUserName())) {
                     matched = true;
-                //}
+                }
             }
         }
-        */
         if (matched) {
             return true;
         } else {

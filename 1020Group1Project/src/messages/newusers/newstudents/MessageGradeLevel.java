@@ -5,6 +5,7 @@
  */
 package messages.newusers.newstudents;
 import app.*;
+import users.Student;
 import messages.Message;
 
 /**
@@ -30,16 +31,15 @@ public class MessageGradeLevel extends Message{
     //sets student grade level. Integer only. String will trigger validation
     @Override
     public boolean runOverride() throws NumberFormatException{
-        /**Needs Anthony's code**/
         //will set student grade level
         if (!getCurrentInput().isEmpty()) {
             if (getCurrentInput().equals("k") || getCurrentInput().equals("K")) {
                 app.printMessage(8, true);
-                //app,getUserArray()[0].get(userCoordinates).setGradeLevel(0);
+                ((Student)app.getUserArray()[0].get(userCoordinates)).setGradeLevel(0);
             } else {
                 try {
                     if (Integer.parseInt(getCurrentInput()) >= 0) {
-                        //((Student)app.getUserArray()[0].get(userCoordinates)).setGradeLevel(Integer.parseInt(getCurrentInput()));
+                        ((Student)app.getUserArray()[0].get(userCoordinates)).setGradeLevel(Integer.parseInt(getCurrentInput()));
                     } else {
                         return false;
                     }

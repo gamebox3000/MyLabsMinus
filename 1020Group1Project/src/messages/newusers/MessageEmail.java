@@ -6,6 +6,7 @@
 package messages.newusers;
 import app.*;
 import messages.Message;
+import users.User;
 /**
  *
  * @author StephenAHyberger
@@ -29,24 +30,20 @@ public class MessageEmail extends Message{
     }
     @Override
     public boolean runOverride() {
-        if (!getCurrentInput().isEmpty()) {
-            //app.getUserArray()[userCoordinates[0]].get(userCoordinates[1]).setEmail(getCurrentInput());
-            switch (userCoordinates[1]) {
-                case 0: //starts student-specific messages
-                    app.printMessage(7, true);
-                    break;
-                case 1: //starts teacher-specific messages
-                    app.printMessage(9, true);
-                    break;
-                case 2: //starts parent-specific messages
-                    app.printMessage(10, true);
-                    break;
-                default:
-                    break;
-            }
-            return true;
-        } else {
-            return false;
+        ((User)app.getUserArray()[userCoordinates[0]].get(userCoordinates[1])).setEMail(getCurrentInput());
+        switch (userCoordinates[0]) {
+            case 0: //starts student-specific messages
+                app.printMessage(7, true);
+                break;
+            case 1: //starts teacher-specific messages
+                app.printMessage(9, true);
+                break;
+            case 2: //starts parent-specific messages
+                app.printMessage(10, true);
+                break;
+            default:
+                break;
         }
+        return true;
     }
 }

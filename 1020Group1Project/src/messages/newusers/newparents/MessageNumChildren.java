@@ -6,6 +6,7 @@
 package messages.newusers.newparents;
 import app.*;
 import messages.Message;
+import users.Parent;
 /**
  *
  * @author StephenAHyberger
@@ -31,12 +32,14 @@ public class MessageNumChildren extends Message{
         //will set the numOfChildren in the parent data.
         try {
             if (Integer.parseInt(getCurrentInput()) >= 0) {
-                
-                /**Needs Anthony's code**/
-                //app.getUserArray()[2].get(userCoordinates).setNumOfChildren(Integer.parseInt(getCurrentInput())); 
-                
-                //passes onto child username looping 
-                app.printMessage(11, true);
+                ((Parent) app.getUserArray()[2].get(userCoordinates)).setNumberOfChildren(Integer.parseInt(getCurrentInput())); 
+                int loops = Integer.parseInt(getCurrentInput());
+                //passes onto child username looping
+                for (int i = 0; i < loops; i++) {
+                   app.printMessage(11, true); 
+                }
+                //passes onto confirmation
+                app.printMessage(14, true);
                 return true;
             } else {
                 return false;

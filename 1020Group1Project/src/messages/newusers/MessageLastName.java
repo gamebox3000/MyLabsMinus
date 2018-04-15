@@ -6,6 +6,7 @@
 package messages.newusers;
 import app.*;
 import messages.Message;
+import users.User;
 /**
  *
  * @author StephenAHyberger
@@ -30,12 +31,8 @@ public class MessageLastName extends Message{
     @Override
     public boolean runOverride() {
         //empty string validation
-        if (!getCurrentInput().isEmpty()) {
-            //app.getUserArray()[userCoordinates[0]].get(userCoordinates[1]).setLastName(getCurrentInput());
-            app.printMessage(6, true);
-            return true;
-        } else {
-            return false;
-        }
+        ((User)app.getUserArray()[userCoordinates[0]].get(userCoordinates[1])).setLastName(getCurrentInput());
+        app.printMessage(6, true);
+        return true;
     }
 }
