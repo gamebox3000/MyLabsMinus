@@ -49,9 +49,6 @@ public class Message {
             return false;
         }
     }
-    
-    /**Needs Aaron**/
-    //Code needs to be corrected. Primitive value needs to stored not references as is now.
     //Prints the message content (prompt) to the screen.
     public void printMessage() {
         //holds the content of the message in originalMessage in case validation is triggered later on.
@@ -67,7 +64,7 @@ public class Message {
             //moves cursor down line.
             System.out.println();
             //checks if command was given
-            if (currentInput.charAt(0) == '\\') {
+            if (currentInput.startsWith("\\")) {
                 //detects if unrecognized command was given if not input is validated.
                 if (!executeCommand()) {
                     //replaces original message with validation message
@@ -115,6 +112,7 @@ public class Message {
             /**Aaron needed**/
             //Handles unrecognized commands and reprints message.
             default:
+                System.out.println("Recognized command. Please consult the list of recognized commands with \\help");
                 return false;
         }
     }

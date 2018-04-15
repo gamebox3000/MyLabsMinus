@@ -6,6 +6,7 @@
 package messages.newusers.newteachers;
 import app.*;
 import messages.Message;
+import users.Teacher;
 
 /**
  *
@@ -34,10 +35,9 @@ public class MessageNumStudents extends Message{
         try {
             if (Integer.parseInt(getCurrentInput()) >= 0) {
                 
-                /**Needs Anthony's code**/
-                //((Teachers)app.getUserArray()[1].get(userCoordinates)).setNumOfStudents(Integer.parseInt(getCurrentInput());
+                ((Teacher)app.getUserArray()[1].get(userCoordinates)).setNumberOfStudents(Integer.parseInt(getCurrentInput()));
                 
-                app.printMessage(12, true);
+                app.printMessage(13, true);
                 return true;
             } else {
                 return false;

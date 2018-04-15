@@ -1,11 +1,13 @@
 package app;
 
 //imports the other packages.
+import messages.newusers.newstudents.MessageConfirmStudent;
 import messages.newusers.*;
 import messages.newusers.newparents.*;
 import messages.newusers.newstudents.*;
 import messages.newusers.newteachers.*;
 import messages.*;
+import users.*;
 //imports ArrayList
 import java.util.ArrayList;
 
@@ -17,26 +19,26 @@ public class MyLabsMinusApp {
     
     //Constructor for MyLabsMinusApp
     public MyLabsMinusApp() {
+        //Will intialize the ArrayLists inside userArray.
+        userArray[0] = new ArrayList<Student>();
+        userArray[1] = new ArrayList<Teacher>();
+        userArray[2] = new ArrayList<Parent>();
         //Adds all the message components to the array.
         messageArray.add(new MessageOpen(this)); //0
         messageArray.add(new MessageLogin(this)); //1
         messageArray.add(new MessageWizard(this)); //2
-        messageArray.add(new MessageUsername(this)); //3
+        messageArray.add(new MessageUserName(this)); //3
         messageArray.add(new MessageFirstName(this)); //4
         messageArray.add(new MessageLastName(this)); //5
         messageArray.add(new MessageEmail(this)); //6
         messageArray.add(new MessageGradeLevel(this)); //7
-        messageArray.add(new MessageTeacherUsername(this)); //8
+        messageArray.add(new MessageTeacherUserName(this)); //8
         messageArray.add(new MessageNumStudents(this)); //9
         messageArray.add(new MessageNumChildren(this)); //10
-        messageArray.add(new MessageChildUsername(this)); //11
-        messageArray.add(new MessageConfirm(this)); //12
-        
-        /**Needs Anthony's code**/
-        //Will intialize the ArrayLists inside userArray.
-        //userArray[0] = new ArrayList<Students>();
-        //userArray[1] = new ArrayList<Teachers>();
-        //userArray[2] = new ArrayList<Parents>();
+        messageArray.add(new MessageChildUserName(this)); //11
+        messageArray.add(new MessageConfirmStudent(this)); //12
+        messageArray.add(new MessageConfirmTeacher(this)); //13
+        messageArray.add(new MessageConfirmParent(this)); //14
     }
     
     //Door to program
@@ -60,20 +62,17 @@ public class MyLabsMinusApp {
     public void createNewStudent() {
         //initializes confirmed to regulate validation cycling.
         boolean confirmed = false;
-        
-        /**Needs Anthony's code**/
         //Will initialize new Student into the user array pass the coordinates for the new user to the appropriate message components.
-        /*userArray[0].add(new Student());
-        ((MessageUsername)messageArray.get(3)).setUserCoordinates(0, userArray[0].size()-1);
+        userArray[0].add(new Student());
+        ((MessageUserName)messageArray.get(3)).setUserCoordinates(0, userArray[0].size()-1);
         ((MessageFirstName)messageArray.get(4)).setUserCoordinates(0, userArray[0].size()-1);
         ((MessageLastName)messageArray.get(5)).setUserCoordinates(0, userArray[0].size()-1);
         ((MessageEmail)messageArray.get(6)).setUserCoordinates(0, userArray[0].size()-1);
         ((MessageGradeLevel)messageArray.get(7)).setUserCoordinates(userArray[0].size()-1);
-        ((MessageTeacherUsername)messageArray.get(8)).setUserCoordinates(userArray[0].size()-1);
-        */
+        ((MessageTeacherUserName)messageArray.get(8)).setUserCoordinates(userArray[0].size()-1);
         
         //Placeholder code for debugging.
-        ((MessageEmail)messageArray.get(6)).setUserCoordinates(0,0);
+        //((MessageEmail)messageArray.get(6)).setUserCoordinates(0,0);
         
         //A while loop that implements validation (some validation may not work properly until all code is integrated).
         while (!confirmed) {
@@ -91,26 +90,23 @@ public class MyLabsMinusApp {
     public void createNewTeacher() {
         //initializes confirmed to regulate validation cycling.
         boolean confirmed = false;
-        
-        /**Needs Anthony's code**/
         //Will initialize new Teacher into the user array pass the coordinates for the new user to the appropriate message components.
-        /*userArray[1].add(new Teacher());
-        ((MessageUsername)messageArray.get(3)).setUserCoordinates(0, userArray[1].size()-1);
-        ((MessageFirstName)messageArray.get(4)).setUserCoordinates(0, userArray[1].size()-1);
-        ((MessageLastName)messageArray.get(5)).setUserCoordinates(0, userArray[1].size()-1);
-        ((MessageEmail)messageArray.get(6)).setUserCoordinates(0, userArray[1].size()-1);
+        userArray[1].add(new Teacher());
+        ((MessageUserName)messageArray.get(3)).setUserCoordinates(1, userArray[1].size()-1);
+        ((MessageFirstName)messageArray.get(4)).setUserCoordinates(1, userArray[1].size()-1);
+        ((MessageLastName)messageArray.get(5)).setUserCoordinates(1, userArray[1].size()-1);
+        ((MessageEmail)messageArray.get(6)).setUserCoordinates(1, userArray[1].size()-1);
         ((MessageNumStudents)messageArray.get(9)).setUserCoordinates(userArray[1].size()-1);
-        */
         
         //Placeholder code for debugging.
-        ((MessageEmail)messageArray.get(6)).setUserCoordinates(0,1);
+        //((MessageEmail)messageArray.get(6)).setUserCoordinates(0,1);
         
         //A while loop that implements validation (some validation may not work properly until all code is integrated).
         while (!confirmed) {
             //starts off user creation messages
             printMessage(3, true);
             //sets confirmed to the result of the end of the user creation chain.
-            confirmed = Boolean.parseBoolean(messageArray.get(12).getCurrentInput());
+            confirmed = Boolean.parseBoolean(messageArray.get(13).getCurrentInput());
         }
         //Clears message history
         messageHistory.clear();
@@ -121,26 +117,19 @@ public class MyLabsMinusApp {
     public void createNewParent() {
         //initializes confirmed to regulate validation cycling.
         boolean confirmed = false;
-        
-        /**Needs Anthony's code**/
-        /*userArray[2].add(new Parent());
-        ((MessageUsername)messageArray.get(3)).setUserCoordinates(0, userArray[2].size()-1);
-        ((MessageFirstName)messageArray.get(4)).setUserCoordinates(0, userArray[2].size()-1);
-        ((MessageLastName)messageArray.get(5)).setUserCoordinates(0, userArray[2].size()-1);
-        ((MessageEmail)messageArray.get(6)).setUserCoordinates(0, userArray[2].size()-1);
+        userArray[2].add(new Parent());
+        ((MessageUserName)messageArray.get(3)).setUserCoordinates(2, userArray[2].size()-1);
+        ((MessageFirstName)messageArray.get(4)).setUserCoordinates(2, userArray[2].size()-1);
+        ((MessageLastName)messageArray.get(5)).setUserCoordinates(2, userArray[2].size()-1);
+        ((MessageEmail)messageArray.get(6)).setUserCoordinates(2, userArray[2].size()-1);
         ((MessageNumChildren)messageArray.get(10)).setUserCoordinates(userArray[2].size()-1);
-        ((MessageChildUsername)messageArray.get(11)).setUserCoordinates(userArray[2].size()-1);
-        */
-        
-        //Placeholder code for debugging.
-        ((MessageEmail)messageArray.get(6)).setUserCoordinates(0,2);
-        
+        ((MessageChildUserName)messageArray.get(11)).setUserCoordinates(userArray[2].size()-1);
         //A while loop that implements validation (some validation may not work properly until all code is integrated).
         while (!confirmed) {
             //starts off user creation messages
             printMessage(3, true);
             //sets confirmed to the result of the end of the user creation chain.
-            confirmed = Boolean.parseBoolean(messageArray.get(12).getCurrentInput());
+            confirmed = Boolean.parseBoolean(messageArray.get(14).getCurrentInput());
         }
         //Clears message history
         messageHistory.clear();
