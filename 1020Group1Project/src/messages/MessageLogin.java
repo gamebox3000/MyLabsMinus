@@ -2,6 +2,11 @@ package messages;
 
 
 import app.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import users.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -23,19 +28,40 @@ public class MessageLogin extends Message{
     }
     @Override
     public boolean runOverride() {
-        /**Needs Anthony's code**/
         //will track if username search was sucessful or not
-        boolean matched = false;
-        /*
-        for (int i = app.getUserArray().length; i > 0; i--) {
-            for(int e = app.getUserArray()[i].size(); e > 0; e--) {
-                //if (getCurrentInput().equals(app.getUserArray()[i].get(e)).getUsername()) {
-                    matched = true;
-                //}
+        if (app.isMatching(getCurrentInput())) {
+            for (int i = 0; i < app.getUserArray().length; i++) {
+                for (int e = 0; e < app.getUserArray()[i].size(); e++) {
+                    String currentName = ((User) app.getUserArray()[i].get(e)).getUserName();
+                    if (currentName.equals(getCurrentInput())) {
+                        app.setCurrentUser((User) app.getUserArray()[i].get(e));
+                    } 
+                }
             }
-        }
-        */
-        if (matched) {
+            if (app.getCurrentUser() instanceof Student) {
+                try {
+                    app.printMessage(15, false);
+                } catch (IOException ex) {
+                    Logger.getLogger(MessageLogin.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                app.getMessageHistory().clear();
+            } else if (app.getCurrentUser() instanceof Teacher) {
+                try {
+                    app.printMessage(16, false);
+                } catch (IOException ex) {
+                    Logger.getLogger(MessageLogin.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                app.getMessageHistory().clear();
+            } else if (app.getCurrentUser() instanceof Parent) {
+                try {
+                    app.printMessage(17, false);
+                } catch (IOException ex) {
+                    Logger.getLogger(MessageLogin.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                app.getMessageHistory().clear();
+            } else {
+                System.out.println("Error: unknown user.");
+            }
             return true;
         } else {
             return false;

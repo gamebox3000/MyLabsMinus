@@ -12,6 +12,7 @@ package messages;
  */
 
 import app.*;
+import java.io.IOException;
 import java.util.Scanner;
 
 //An archetypal message that handles all the common behavior of the message oomponents. 
@@ -49,11 +50,8 @@ public class Message {
             return false;
         }
     }
-    
-    /**Needs Aaron**/
-    //Code needs to be corrected. Primitive value needs to stored not references as is now.
     //Prints the message content (prompt) to the screen.
-    public void printMessage() {
+    public void printMessage() throws IOException {
         //holds the content of the message in originalMessage in case validation is triggered later on.
         String originalMessage = message;
         //success will track if the input from the user passes validation. 
@@ -67,7 +65,7 @@ public class Message {
             //moves cursor down line.
             System.out.println();
             //checks if command was given
-            if (currentInput.charAt(0) == '\\') {
+            if (currentInput.startsWith("\\")) {
                 //detects if unrecognized command was given if not input is validated.
                 if (!executeCommand()) {
                     //replaces original message with validation message
@@ -87,7 +85,7 @@ public class Message {
         message = originalMessage;
     }
     //Executes commands.
-    public boolean executeCommand() {
+    public boolean executeCommand() throws IOException {
         switch (currentInput) {
             //Back command takes user to the previous message in the message history.
             case "\\Back":
@@ -103,6 +101,9 @@ public class Message {
             //Help command prints list of valid commands to the user and reprints message.
             case "\\Help":
             case "\\help":
+                System.out.println("List of commands:\n\n1. \\help - Prints out a list of all the available commands.\n\n2. \\back - returns to the last visted menu.\n\n3. \\exit - terminates program.\n\nPress enter to continue.");
+                System.in.read();
+                app.printMessage(app.getCurrentMessage(), false);
                 return true;
                 
             //Exit command terminates program.    
@@ -115,6 +116,7 @@ public class Message {
             /**Aaron needed**/
             //Handles unrecognized commands and reprints message.
             default:
+                System.out.println("Recognized command. Please consult the list of recognized commands with \\help");
                 return false;
         }
     }

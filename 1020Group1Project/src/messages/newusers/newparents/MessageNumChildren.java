@@ -5,7 +5,11 @@
  */
 package messages.newusers.newparents;
 import app.*;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import messages.Message;
+import users.Parent;
 /**
  *
  * @author StephenAHyberger
@@ -31,12 +35,22 @@ public class MessageNumChildren extends Message{
         //will set the numOfChildren in the parent data.
         try {
             if (Integer.parseInt(getCurrentInput()) >= 0) {
-                
-                /**Needs Anthony's code**/
-                //app.getUserArray()[2].get(userCoordinates).setNumOfChildren(Integer.parseInt(getCurrentInput())); 
-                
-                //passes onto child username looping 
-                app.printMessage(11, true);
+                ((Parent) app.getUserArray()[2].get(userCoordinates)).setNumberOfChildren(getCurrentInput()); 
+                int loops = Integer.parseInt(getCurrentInput());
+                //passes onto child username looping
+                for (int i = 0; i < loops; i++) {
+                    try { 
+                        app.printMessage(11, true);
+                    } catch (IOException ex) {
+                        Logger.getLogger(MessageNumChildren.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                try {
+                    //passes onto confirmation
+                    app.printMessage(14, true);
+                } catch (IOException ex) {
+                    Logger.getLogger(MessageNumChildren.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 return true;
             } else {
                 return false;

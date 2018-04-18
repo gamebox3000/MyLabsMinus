@@ -5,7 +5,11 @@
  */
 package messages.newusers;
 import app.*;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import messages.Message;
+import users.User;
 /**
  *
  * @author StephenAHyberger
@@ -30,12 +34,12 @@ public class MessageFirstName extends Message{
     @Override
     public boolean runOverride() {
         //Validation for empty string.
-        if (!getCurrentInput().isEmpty()) {
-            //app.getUserArray()[userCoordinates[0]].get(userCoordinates[1]).setFirstName(getCurrentInput());
+        ((User)app.getUserArray()[userCoordinates[0]].get(userCoordinates[1])).setFirstName(getCurrentInput());
+        try {
             app.printMessage(5, true);
-            return true;
-        } else {
-            return false;
+        } catch (IOException ex) {
+            Logger.getLogger(MessageFirstName.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return true;
     }
 }

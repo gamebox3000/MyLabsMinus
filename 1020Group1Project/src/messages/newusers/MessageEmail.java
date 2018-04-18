@@ -5,7 +5,11 @@
  */
 package messages.newusers;
 import app.*;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import messages.Message;
+import users.User;
 /**
  *
  * @author StephenAHyberger
@@ -29,24 +33,39 @@ public class MessageEmail extends Message{
     }
     @Override
     public boolean runOverride() {
-        if (!getCurrentInput().isEmpty()) {
-            //app.getUserArray()[userCoordinates[0]].get(userCoordinates[1]).setEmail(getCurrentInput());
-            switch (userCoordinates[1]) {
-                case 0: //starts student-specific messages
-                    app.printMessage(7, true);
-                    break;
-                case 1: //starts teacher-specific messages
-                    app.printMessage(9, true);
-                    break;
-                case 2: //starts parent-specific messages
-                    app.printMessage(10, true);
-                    break;
-                default:
-                    break;
+        ((User)app.getUserArray()[userCoordinates[0]].get(userCoordinates[1])).setEMail(getCurrentInput());
+        switch (userCoordinates[0]) {
+            case 0: {
+            try {
+                //starts student-specific messages
+                app.printMessage(7, true);
+            } catch (IOException ex) {
+                Logger.getLogger(MessageEmail.class.getName()).log(Level.SEVERE, null, ex);
             }
-            return true;
-        } else {
-            return false;
         }
+                break;
+            case 1: {
+            try {
+                //starts teacher-specific messages
+                app.printMessage(9, true);
+            } catch (IOException ex) {
+                Logger.getLogger(MessageEmail.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+                break;
+            case 2: {
+            try {
+                //starts parent-specific messages
+                app.printMessage(10, true);
+            } catch (IOException ex) {
+                Logger.getLogger(MessageEmail.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+                break;
+            default:
+                System.out.println("System error.");
+                return false;
+        }
+        return true;
     }
 }

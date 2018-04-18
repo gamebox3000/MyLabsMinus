@@ -2,6 +2,9 @@ package messages;
 
 
 import app.MyLabsMinusApp;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -27,10 +30,22 @@ public class MessageOpen extends Message {
             try {
                 switch (Integer.parseInt(cPut)) {
                     //Branches to login 
-                    case 1: app.printMessage(1, true);
+                    case 1: {
+                    try {
+                        app.printMessage(1, true);
+                    } catch (IOException ex) {
+                        Logger.getLogger(MessageOpen.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
                     return true;
                     //Branches to account creation
-                    case 2: app.printMessage(2, true);
+                    case 2: {
+                    try {
+                        app.printMessage(2, true);
+                    } catch (IOException ex) {
+                        Logger.getLogger(MessageOpen.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
                     return true;
                     default: return false;
                 }
