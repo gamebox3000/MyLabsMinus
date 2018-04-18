@@ -5,6 +5,10 @@
  */
 package messages.newusers.newstudents;
 import app.*;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import users.Student;
 import messages.Message;
 
 /**
@@ -30,16 +34,19 @@ public class MessageGradeLevel extends Message{
     //sets student grade level. Integer only. String will trigger validation
     @Override
     public boolean runOverride() throws NumberFormatException{
-        /**Needs Anthony's code**/
         //will set student grade level
         if (!getCurrentInput().isEmpty()) {
             if (getCurrentInput().equals("k") || getCurrentInput().equals("K")) {
-                app.printMessage(8, true);
-                //app,getUserArray()[0].get(userCoordinates).setGradeLevel(0);
+                try {
+                    app.printMessage(8, true);
+                } catch (IOException ex) {
+                    Logger.getLogger(MessageGradeLevel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                ((Student)app.getUserArray()[0].get(userCoordinates)).setGradeLevel("0");
             } else {
                 try {
                     if (Integer.parseInt(getCurrentInput()) >= 0) {
-                        //((Student)app.getUserArray()[0].get(userCoordinates)).setGradeLevel(Integer.parseInt(getCurrentInput()));
+                        ((Student)app.getUserArray()[0].get(userCoordinates)).setGradeLevel(getCurrentInput());
                     } else {
                         return false;
                     }
@@ -47,8 +54,12 @@ public class MessageGradeLevel extends Message{
                     return false;
                 }
             }
-            //passes onto teacher selection
-            app.printMessage(8, true);
+            try {
+                //passes onto teacher selection
+                app.printMessage(8, true);
+            } catch (IOException ex) {
+                Logger.getLogger(MessageGradeLevel.class.getName()).log(Level.SEVERE, null, ex);
+            }
             return true;
         } else {
             return false;

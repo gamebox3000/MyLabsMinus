@@ -5,7 +5,11 @@
  */
 package messages.newusers.newteachers;
 import app.*;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import messages.Message;
+import users.Teacher;
 
 /**
  *
@@ -34,10 +38,13 @@ public class MessageNumStudents extends Message{
         try {
             if (Integer.parseInt(getCurrentInput()) >= 0) {
                 
-                /**Needs Anthony's code**/
-                //((Teachers)app.getUserArray()[1].get(userCoordinates)).setNumOfStudents(Integer.parseInt(getCurrentInput());
+                ((Teacher)app.getUserArray()[1].get(userCoordinates)).setNumberOfStudents(getCurrentInput());
                 
-                app.printMessage(12, true);
+                try {
+                    app.printMessage(13, true);
+                } catch (IOException ex) {
+                    Logger.getLogger(MessageNumStudents.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 return true;
             } else {
                 return false;
