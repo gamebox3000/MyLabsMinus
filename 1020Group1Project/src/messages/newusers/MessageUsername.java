@@ -5,7 +5,11 @@ package messages.newusers;
  * and open the template in the editor.
  */
 import app.MyLabsMinusApp;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import messages.Message;
+import users.User;
 
 
 /**
@@ -13,10 +17,10 @@ import messages.Message;
  * @author StephenAHyberger
  */
 //prompts user for username
-public class MessageUsername extends Message{
+public class MessageUserName extends Message{
     //tracks user data position
     private int[] userCoordinates = new int[2];
-    public MessageUsername(MyLabsMinusApp app) {
+    public MessageUserName(MyLabsMinusApp app) {
         //predefined text
         super("Please enter a unique username", "Username is already taken. Try another one.", app);
     }
@@ -31,14 +35,16 @@ public class MessageUsername extends Message{
     }
     @Override
     public boolean runOverride() {
-        //empty string validation
-        if (!getCurrentInput().isEmpty()) {
-            //app.getUserArray()[userCoordinates[0]].get(userCoordinates[1]).setUsername(getCurrentInput());
-            app.printMessage(4, true);
+        if (!app.isMatching(getCurrentInput())) {
+            ((User)app.getUserArray()[userCoordinates[0]].get(userCoordinates[1])).setUserName(getCurrentInput());
+            try {
+                app.printMessage(4, true);
+            } catch (IOException ex) {
+                Logger.getLogger(MessageUserName.class.getName()).log(Level.SEVERE, null, ex);
+            }
             return true;
         } else {
             return false;
         }
-        
     }
 }

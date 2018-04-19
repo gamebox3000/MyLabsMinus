@@ -2,6 +2,9 @@ package messages;
 
 
 import app.MyLabsMinusApp;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -24,14 +27,32 @@ public class MessageWizard extends Message {
     public boolean runOverride() throws NumberFormatException {
         try {
             switch(Integer.parseInt(getCurrentInput())) {
-                case 1: //starts new student message chain
+                case 1: {
+                try {
+                    //starts new student message chain
                     app.createNewStudent();
+                } catch (IOException ex) {
+                    Logger.getLogger(MessageWizard.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
                     return true;
-                case 2: //starts new teacher message chain
+                case 2: {
+                try {
+                    //starts new teacher message chain
                     app.createNewTeacher();
+                } catch (IOException ex) {
+                    Logger.getLogger(MessageWizard.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
                     return true;
-                case 3: //starts new parent message chain
+                case 3: {
+                try {
+                    //starts new parent message chain
                     app.createNewParent();
+                } catch (IOException ex) {
+                    Logger.getLogger(MessageWizard.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
                     return true;
             }
         } catch (NumberFormatException ex) {

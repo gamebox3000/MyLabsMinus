@@ -44,11 +44,7 @@ public class Message {
     //A method that the subclasses override to implement their individual behavior.
     public boolean runOverride() {
         //default code detects empty string and triggers validation process.
-        if (!getCurrentInput().isEmpty()) {
-            return true;
-        } else {
-            return false;
-        }
+        return !getCurrentInput().isEmpty();
     }
     //Prints the message content (prompt) to the screen.
     public void printMessage() throws IOException {

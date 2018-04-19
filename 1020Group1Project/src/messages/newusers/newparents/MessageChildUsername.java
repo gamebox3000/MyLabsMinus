@@ -7,17 +7,19 @@ package messages.newusers.newparents;
 import app.*;
 import java.util.ArrayList;
 import messages.Message;
+import users.Parent;
+import users.Student;
 /**
  *
  * @author StephenAHyberger
  */
 //Parent specific prompt that loops until all children are entered.
-public class MessageChildUsername extends Message{
+public class MessageChildUserName extends Message{
     //tracks user data position
     private int userCoordinates;
-    public MessageChildUsername(MyLabsMinusApp app) {
+    public MessageChildUserName(MyLabsMinusApp app) {
         //predefined text.
-        super ("Enter your student's username", "Username not found. Please try agian.", app);
+        super ("Enter your student's username.", "Username not found. Please try agian.", app);
     }
     //returns user data position
     public int getUserCoordinates() {
@@ -29,24 +31,13 @@ public class MessageChildUsername extends Message{
     }
     @Override
     public boolean runOverride() {
-        //empty String validation
-        if (!getCurrentInput().isEmpty()) {
-            
-            /**Needs Anthony's code**/
-            //will loop through the number of children and prompt x number of times and enter array of children into temporary user data.
-            ArrayList<String> childUsernames = new ArrayList<>();
-            /*for (int i = ((Parent)app.getUserArray()[2].get(userCoordinates)).getNumOfChildren(); i > 0; i--) {
-                printMessage(11, true);
-                childUsernames.add(messageArray.get(11).getCurrentInput());
+        boolean found = false;
+        for (int i = 0; i < app.getUserArray()[0].size(); i++) {
+            if (((Student) app.getUserArray()[0].get(i)).getUserName().equals(getCurrentInput())) {
+                ((Parent) app.getUserArray()[2].get(userCoordinates)).addChild(((Student) app.getUserArray()[0].get(i)));
+                found = true;
             }
-            ((Parent)app.getUserArray()[2].get(userCoordinates)).setChildArray(getCurrentInput();
-            */
-            
-            //triggers end of account creation.
-            app.printMessage(12, true);
-            return true;
-        } else {
-            return false;
         }
+        return found;
     }
 }
