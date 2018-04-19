@@ -18,6 +18,11 @@ public class MessageQuiz extends Message{
     }
     @Override
     public boolean runOverride() {
+        
         return true;
+    }
+    @Override 
+    public void printMessage() {
+        
     }
 } 
