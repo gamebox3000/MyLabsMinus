@@ -17,7 +17,7 @@ public class Student extends User {
         teacherUserName = "";
     }
     public Student(String userName, String lastName, String firstName, String eMail, String gradeLevel, String teacherUserName) {
-        super (userName, lastName, firstName, eMail);
+        super(userName, lastName, firstName, eMail);
         this.gradeLevel = gradeLevel;
         this.teacherUserName = teacherUserName;
     }
