@@ -7,7 +7,7 @@ package pkg1020group1project;
 
 /**
  *
- * @author gamebox3000
+ * @author Jonathan Babb
  */
 public class FileInterface {
     
