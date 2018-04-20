@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package app;
+package pkg1020group1project;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -16,14 +16,14 @@ import java.util.Scanner;
 public class UserInterface {
     //!!todo fix history storeing/navigation
     static ArrayList<String> history = new ArrayList<>();
-    static Scanner in = new Scanner(System.in);
+    static Scanner uIn = new Scanner(System.in);
     static boolean recordHistory = true;
 
     static String parseInput(String[] acceptableIns, String prompt,String needs) {
         while (true) {
             System.out.println(prompt);
             System.out.print("\n\n>>>");
-            String input = in.nextLine();
+            String input = uIn.nextLine();
             for (String acceptables : acceptableIns) {
                 if (input.toLowerCase() == null ? acceptables == null : input.toLowerCase().equals(acceptables)) {
                     return input;
@@ -41,7 +41,7 @@ public class UserInterface {
         while (true) {
             System.out.println(prompt);
             System.out.print("\n\n>>>");
-            String input = in.nextLine();
+            String input = uIn.nextLine();
             if (input.startsWith("/")) {
                 executeCommand(input);
                 return null;
@@ -55,7 +55,7 @@ public class UserInterface {
             //Back command takes user to the previous message in the message history.
             case "/back":
                 if (history.isEmpty()) {
-                    System.out.println("Cannot run \back commmand: there is no menu to go back to");
+                    System.out.println("Cannot run /back commmand: there is no menu to go back to");
                 } else {
                     recordHistory = false;
                     history.remove(history.size()-1);
@@ -64,7 +64,8 @@ public class UserInterface {
                 break;
             //Help command prints list of valid commands to the user and reprints message.
             case "/help":
-                System.out.println("List of commands:\n\n1. \\help - Prints out a list of all the available commands.\n\n2. \\back - returns to the last visted menu.\n\n3. \\exit - terminates program.\n\nPress enter to continue.");
+                System.out.println("List of commands:\n\n1. /help - Prints out a list of all the available commands.\n\n2. /back - returns to the last visted menu.\n\n3. /exit - terminates program.\n\nPress enter to continue.");
+                System..read();
                 dialogTree(history.get(history.size()-1));
                 break;
             //Exit command terminates program.    
@@ -110,7 +111,7 @@ public class UserInterface {
     public static void open(){
         history.add("Open");
         String[] allowed = {"1","2"};
-        String prompt = "Welcome to MyLabsMinus\nFrom here you can either login or create a new account.\nPlease indicate your choice by entering the corresponding number:\n1. Login\n2. New User";
+        String prompt = "Welcome to MyLabsMinus\nType /help for a list of commands\nFrom here you can either login or create a new account.\nPlease indicate your choice by entering the corresponding number:\n1. Login\n2. New User";
         String need = "Please enter either a 1 or 2, indicating your choice.";
         String input = parseInput(allowed, prompt, need);
         switch (input){
@@ -208,7 +209,7 @@ public class UserInterface {
         String prompt = "Please enter your grade level";
         String temp = parseInput(prompt);
     }
-    //special prompt for this one
+    //special prompt for this one needs integration with file parser
     static void teacherUserName(){
         if(recordHistory)history.add("TeacherUserName");
         recordHistory = true;

@@ -5,8 +5,6 @@
  */
 package pkg1020group1project;
 
-import app.UserInterface;
-
 /**
  *
  * @author mboyson
