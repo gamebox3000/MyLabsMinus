@@ -14,6 +14,10 @@ import users.*;
 //imports ArrayList
 import java.util.ArrayList;
 
+/**
+ * Class MyLabsMinusApp is the entry point for the program. 
+ * @author Stephen Hyberger
+ */
 public class MyLabsMinusApp {
     private int currentMessage; //a field to hold the index of the currently active message
     private ArrayList[] userArray = new ArrayList[3]; //An array of ArrayLists designed to hold quick-access user data (not all user data)
@@ -23,6 +27,9 @@ public class MyLabsMinusApp {
     public static final User NULLUSER = new User("None", "None", "None", "None"); //a constant user for that will be used when no one is logged in.
     
     //Constructor for MyLabsMinusApp
+    /**
+     *This constructor initializes the program by filling the messageArray with the message dialogues to be used later.
+     */
     public MyLabsMinusApp() {
         //Initializes current user as NULLUSER.
         currentUser = NULLUSER;
@@ -56,11 +63,22 @@ public class MyLabsMinusApp {
     }
     
     //Door to program
+    /**
+     * The main method is the entry point to the program that initializes the program and starts off the "method ping-pong."
+     * @param args The command-line input from the user.
+     * @throws IOException 
+     */
     public static void main(String[] args) throws IOException {
         MyLabsMinusApp app = new MyLabsMinusApp(); //Calls constructor and does initial setup
         messageArray.get(0).printMessage(); //Starts off message chain.
     }
     //prints given menu at index messageIndex and decides whether or not to include the message in the message history. 
+    /**
+     * The printMessage method selects which message to print and has it print to the screen.
+     * @param messageIndex The index of the desired message in messageArray field.
+     * @param setLastMessage The boolean value that determines whether or not to include the menu in the message history.
+     * @throws IOException 
+     */
     public void printMessage(int messageIndex, boolean setLastMessage) throws IOException {
         //If tracking message history.
         if (setLastMessage) {
@@ -73,6 +91,10 @@ public class MyLabsMinusApp {
         messageArray.get(messageIndex).printMessage();
     }
     //Creates new Student user
+    /**
+     * Method createNewStudent initializes a new Student using a series of message dialogues that are pre-initialized in the messageArray.
+     * @throws IOException 
+     */
     public void createNewStudent() throws IOException {
         //initializes confirmed to regulate validation cycling.
         boolean confirmed = false;
@@ -101,6 +123,10 @@ public class MyLabsMinusApp {
         printMessage(0, false);
     }
     //Creates new Teacher user
+    /**
+     * Method createNewTeacher initializes a new Teacher using a series of message dialogues that are pre-initialized in the messageArray.
+     * @throws IOException 
+     */
     public void createNewTeacher() throws IOException {
         //initializes confirmed to regulate validation cycling.
         boolean confirmed = false;
@@ -127,7 +153,10 @@ public class MyLabsMinusApp {
         //returns you to the starting message.
         printMessage(0, false);
     }
-    
+    /**
+     * Method createNewParent initializes a new Parent using a series of message dialogues that are pre-initialized in the messageArray.
+     * @throws IOException 
+     */
     public void createNewParent() throws IOException {
         //initializes confirmed to regulate validation cycling.
         boolean confirmed = false;
@@ -151,14 +180,27 @@ public class MyLabsMinusApp {
         printMessage(0, false);
     }
     //returns the index of the current message.
+    /**
+     * Returns the field that holds the currently active message.
+     * @return The currently active message dialogue.
+     */
     public int getCurrentMessage() {
         return currentMessage;
     }
     //allows user to set the current message by specifying the index.
+    /**
+     * Sets the currently active message.
+     * @param newCurrentMenu The message dialogue to be set as the current dialogue.
+     */
     public void setCurrentMessage(int newCurrentMenu) {
         currentMessage = newCurrentMenu;
     }
     //returns the index of the previous message
+    /**
+     * returns the message at the top of the messageHistory array. Used exclusively to implement the /back command.
+     * @param accessing A boolean to determine whether or not to remove the top item in the messageHistory array
+     * @return 
+     */
     public int getLastMessage(boolean accessing) {
         //gets the index of the previous message.
         int transfer = messageHistory.get(messageHistory.size()-1);
@@ -170,30 +212,59 @@ public class MyLabsMinusApp {
         return transfer;
     }
     //allows user to set the previous message in the message history.
+    /**
+     * Adds the specified message to the top of the messageHistory array.
+     * @param message The index of the specified message in the messageArray.
+     */
     public void setLastMessage(int message) {
         messageHistory.add(message);
     }
     //returns the message history array list
+    /**
+     * Returns the messageHistory array.
+     * @return The messageHistory array containing all the past visited components provided it has not been wiped by one of the messages.
+     */
     public ArrayList<Integer> getMessageHistory() {
         return messageHistory;
     }
     //returns the array of message components
+    /**
+     * Returns the messageArray.
+     * @return The messageArray containing all the message components.
+     */
     public ArrayList<Message> getMessageArray() {
         return messageArray;
     }
     //returns the array of quick access user data.
+    /**
+     * Returns the userArray.
+     * @return The userArray containing all the temporary info of new users. 
+     */
     public ArrayList[] getUserArray() {
         return userArray;
     }
     //returns the currently logged in user.
+    /**
+     * Returns the currently logged on user.
+     * @return The currently logged on user.
+     */
     public User getCurrentUser() {
         return currentUser;
     }
     //sets the current User to a new User.
+    /**
+     * Logs on a specified user.
+     * @param newUser The user to be logged on.
+     */
     public void setCurrentUser(User newUser) {
         currentUser = newUser;
     }
     //checks if username matches between parameter and any user.
+    /**
+     * Runs through the userArray and checks for a match between the userName parameter and the userName field in the User class.
+     * @param userName the username to search for. 
+     * @return Whether or not a username match was found.
+     */
     public boolean isMatching(String userName) {
         boolean success = false;
         for (ArrayList userArray1 : this.getUserArray()) {
