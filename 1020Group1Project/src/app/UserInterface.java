@@ -56,27 +56,24 @@ public class UserInterface {
                 if (history.isEmpty()) {
                     System.out.println("Cannot run \back commmand: there is no menu to go back to");
                 } else {
-                    dialogTree(history.get(history.size() - 1));
+                    dialogTree(history.get(history.size() - 2));
                     history.remove(history.size() - 1);
                 }
                 break;
             //Help command prints list of valid commands to the user and reprints message.
             case "/help":
                 System.out.println("List of commands:\n\n1. \\help - Prints out a list of all the available commands.\n\n2. \\back - returns to the last visted menu.\n\n3. \\exit - terminates program.\n\nPress enter to continue.");
-                dialogTree(history.get(history.size()));
+                dialogTree(history.get(history.size()-1));
                 break;
             //Exit command terminates program.    
             case "/exit":
                 System.out.println("\nThank you for using MyLabMinus");
                 System.exit(0);
                 break;
-            /**
-             * Aaron needed*
-             */
             //Handles unrecognized commands and reprints message.
             default:
                 System.out.println("Unrecognized command. Please consult the list of recognized commands with \\help");
-                dialogTree(history.get(history.size()));
+                dialogTree(history.get(history.size()-1));
                 break;
         }
     }
@@ -108,19 +105,71 @@ public class UserInterface {
         }
     }
     
-    static void open(){
+    public static void open(){
         history.add("Open");
-        String[] allowed = {"1","2","3"};
-        String temp = parseInput(allowed, "Welcome to MyLabsMinus\nFrom here you can either login or create a new account.\nPlease indicate your choice by entering the corresponding number:\n1. Login\n2. New User", "Please enter either a 1 or 2, indicating your choice.");
+        String[] allowed = {"1","2"};
+        String prompt = "Welcome to MyLabsMinus\nFrom here you can either login or create a new account.\nPlease indicate your choice by entering the corresponding number:\n1. Login\n2. New User";
+        String need = "Please enter either a 1 or 2, indicating your choice.";
+        String input = parseInput(allowed, prompt, need);
+        switch (input){
+            case "1": login(); break;
+            case "2": type(); break;
+            default: break;
+        }
         
     }
     
     static void login(){
         history.add("Login");
+        String[] allowed = {"student", "teacher", "parent"};
+        String prompt = "Please enter your username to login !Temp enter student/teacher/parent!";
+        String need = "student/teacher/parent";
+        String input = parseInput(allowed, prompt, need);
+        //todo: check against text file
+        switch(input){
+            case "student": studentMenu(); break;
+            case "teacher": teacherMenu(); break;
+            case "parent": parentMenu(); break;
+            default: break;
+        }
+        
     }
-    
+    /**
+     * !!Note: in the future change methods called within this one to return
+     * strings so they can be written to the text file
+     */
     static void type(){
         history.add("type");
+        String[] allowed = {"1","2","3"};
+        String prompt = "Are you a:\n1. Student\n2. Teacher\n3. Parent";
+        String need = "Please enter a 1, 2, or 3, indicating your choice.";
+        String input = parseInput(allowed, prompt, need);
+        switch (input){
+            case "1": 
+                userName();
+                firstName();
+                lastName();
+                email();
+                gradeLevel();
+                teacherUserName();
+                break;
+            case "2": 
+                userName();
+                firstName();
+                lastName();
+                email();
+                numStudents();
+                break;
+            case "3": 
+                userName();
+                firstName();
+                lastName();
+                email();
+                numChildren();
+                childUserName();
+                break;
+            default: break;
+        }
     }
     
     static void userName(){

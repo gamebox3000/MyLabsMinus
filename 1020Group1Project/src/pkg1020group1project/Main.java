@@ -5,6 +5,8 @@
  */
 package pkg1020group1project;
 
+import app.UserInterface;
+
 /**
  *
  * @author mboyson
@@ -16,6 +18,7 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        UserInterface.open();
     }
     
 }
