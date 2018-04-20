@@ -2,6 +2,33 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/StephenAHyberger/Desktop/1020Group1Project/src/messages/newusers/newteachers/MessageConfirmTeacher.java</file>
+            <file>file:/C:/Users/StephenAHyberger/Desktop/1020Group1Project/src/messages/usermenus/studentmenu/MessageQuiz.java</file>
+            <file>file:/C:/Users/StephenAHyberger/Desktop/1020Group1Project/src/messages/newusers/newstudents/MessageTeacherUserName.java</file>
+            <file>file:/C:/Users/StephenAHyberger/Desktop/1020Group1Project/src/messages/usermenus/parentmenu/MessageParentMenu.java</file>
+            <file>file:/C:/Users/StephenAHyberger/Desktop/1020Group1Project/src/messages/Message.java</file>
+            <file>file:/C:/Users/StephenAHyberger/Desktop/1020Group1Project/src/messages/newusers/newstudents/MessageConfirmStudent.java</file>
+            <file>file:/C:/Users/StephenAHyberger/Desktop/1020Group1Project/src/messages/usermenus/parentmenu/MessagePrintReport.java</file>
+            <file>file:/C:/Users/StephenAHyberger/Desktop/1020Group1Project/src/messages/newusers/newteachers/MessageNumStudents.java</file>
+            <file>file:/C:/Users/StephenAHyberger/Desktop/1020Group1Project/src/users/User.java</file>
+            <file>file:/C:/Users/StephenAHyberger/Desktop/1020Group1Project/src/messages/usermenus/studentmenu/MessageStudentMenu.java</file>
+            <file>file:/C:/Users/StephenAHyberger/Desktop/1020Group1Project/src/messages/MessageOpen.java</file>
+            <file>file:/C:/Users/StephenAHyberger/Desktop/1020Group1Project/src/messages/newusers/MessageFirstName.java</file>
+            <file>file:/C:/Users/StephenAHyberger/Desktop/1020Group1Project/src/messages/usermenus/teachermenu/MessageSearch.java</file>
+            <file>file:/C:/Users/StephenAHyberger/Desktop/1020Group1Project/src/messages/newusers/MessageWizard.java</file>
+            <file>file:/C:/Users/StephenAHyberger/Desktop/1020Group1Project/src/users/Teacher.java</file>
+            <file>file:/C:/Users/StephenAHyberger/Desktop/1020Group1Project/src/messages/newusers/MessageEmail.java</file>
+            <file>file:/C:/Users/StephenAHyberger/Desktop/1020Group1Project/src/users/Student.java</file>
+            <file>file:/C:/Users/StephenAHyberger/Desktop/1020Group1Project/src/messages/usermenus/teachermenu/MessageTeacherMenu.java</file>
+            <file>file:/C:/Users/StephenAHyberger/Desktop/1020Group1Project/src/messages/newusers/newparents/MessageNumChildren.java</file>
+            <file>file:/C:/Users/StephenAHyberger/Desktop/1020Group1Project/src/messages/newusers/MessageUserName.java</file>
+            <file>file:/C:/Users/StephenAHyberger/Desktop/1020Group1Project/src/messages/newusers/newstudents/MessageGradeLevel.java</file>
+            <file>file:/C:/Users/StephenAHyberger/Desktop/1020Group1Project/src/messages/MessageLogin.java</file>
+            <file>file:/C:/Users/StephenAHyberger/Desktop/1020Group1Project/src/messages/newusers/newparents/MessageConfirmParent.java</file>
+            <file>file:/C:/Users/StephenAHyberger/Desktop/1020Group1Project/src/messages/newusers/newparents/MessageChildUserName.java</file>
+            <file>file:/C:/Users/StephenAHyberger/Desktop/1020Group1Project/src/users/Parent.java</file>
+            <file>file:/C:/Users/StephenAHyberger/Desktop/1020Group1Project/src/messages/newusers/MessageLastName.java</file>
+        </group>
     </open-files>
 </project-private>
