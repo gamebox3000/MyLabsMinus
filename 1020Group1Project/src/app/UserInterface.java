@@ -35,6 +35,19 @@ public class UserInterface {
             System.out.println(needs);
         }
     }
+    
+    static String parseInput(String prompt) {
+        while (true) {
+            System.out.println(prompt);
+            System.out.print("\n\n>>>");
+            String input = in.nextLine();
+            if (input.startsWith("/")) {
+                executeCommand(input);
+                return null;
+            }
+            return input;
+        }
+    }
 
     static void executeCommand(String input) {
         switch (input.toLowerCase()) {
@@ -97,6 +110,9 @@ public class UserInterface {
     
     static void open(){
         history.add("Open");
+        String[] allowed = {"1","2","3"};
+        String temp = parseInput(allowed, "Welcome to MyLabsMinus\nFrom here you can either login or create a new account.\nPlease indicate your choice by entering the corresponding number:\n1. Login\n2. New User", "Please enter either a 1 or 2, indicating your choice.");
+        
     }
     
     static void login(){
