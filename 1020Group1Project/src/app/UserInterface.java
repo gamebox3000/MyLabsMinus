@@ -296,11 +296,29 @@ public class UserInterface {
     static void teacherMenu(){
         if(recordHistory)history.add("TeacherMenu");
         recordHistory = true;
+        String[] allowed = {"1","2"};
+        String prompt = "Please select one of the options below:\n1. Search Students\n2. Log out";
+        String need = "Please indicate your choice using either 1 or 2.";
+        String input = parseInput(allowed, prompt, need);
+        switch(input){
+            case "1": search(); break;
+            case "2": System.out.println("Thank you !insert name here! for using MyLabsMinus. Please come again.\n");open(); break;
+            default: break;
+        }
     }
     
     static void parentMenu(){
         if(recordHistory)history.add("ParentMenu");
         recordHistory = true;
+        String[] allowed = {"1","2"};
+        String prompt = "Please select one of the options below:\n1. Print Report.\n2. Log out.";
+        String need = "Please indicate your choice using either 1 or 2.";
+        String input = parseInput(allowed, prompt, need);
+        switch(input){
+            case "1": printReport(); break;
+            case "2": System.out.println("Thank you !insert name here! for using MyLabsMinus. Please come again.\n");open(); break;
+            default: break;
+        }
     }
     
     static void quiz(){
