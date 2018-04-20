@@ -5,6 +5,7 @@
  */
 package pkg1020group1project;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -65,7 +66,6 @@ public class UserInterface {
             //Help command prints list of valid commands to the user and reprints message.
             case "/help":
                 System.out.println("List of commands:\n\n1. /help - Prints out a list of all the available commands.\n\n2. /back - returns to the last visted menu.\n\n3. /exit - terminates program.\n\nPress enter to continue.");
-                System..read();
                 dialogTree(history.get(history.size()-1));
                 break;
             //Exit command terminates program.    
