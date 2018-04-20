@@ -14,9 +14,10 @@ import java.util.Scanner;
  * @author mboyson
  */
 public class UserInterface {
-
+    //!!todo fix history storeing/navigation
     static ArrayList<String> history = new ArrayList<>();
     static Scanner in = new Scanner(System.in);
+    static boolean recordHistory = true;
 
     static String parseInput(String[] acceptableIns, String prompt,String needs) {
         while (true) {
@@ -56,8 +57,9 @@ public class UserInterface {
                 if (history.isEmpty()) {
                     System.out.println("Cannot run \back commmand: there is no menu to go back to");
                 } else {
-                    dialogTree(history.get(history.size() - 2));
-                    history.remove(history.size() - 1);
+                    recordHistory = false;
+                    history.remove(history.size()-1);
+                    dialogTree(history.get(history.size() - 1));
                 }
                 break;
             //Help command prints list of valid commands to the user and reprints message.
@@ -173,74 +175,146 @@ public class UserInterface {
     }
     
     static void userName(){
-        history.add("UserName");
+        if(recordHistory)history.add("UserName");
+        recordHistory = true;
+        String prompt = "Please enter a unique username";
+        String temp = parseInput(prompt);
     }
     
     static void firstName(){
-        history.add("FirstName");
+        if(recordHistory)history.add("FirstName");
+        recordHistory = true;
+        String prompt = "Please enter your first name";
+        String temp = parseInput(prompt);
     }
     
     static void lastName(){
-        history.add("LastName");
+        if(recordHistory)history.add("LastName");
+        recordHistory = true;
+        String prompt = "please enter your last name";
+        String temp = parseInput(prompt);
     }
     
     static void email(){
-        history.add("Email");
+        if(recordHistory)history.add("Email");
+        recordHistory = true;
+        String prompt = "Please enter your email";
+        String temp = parseInput(prompt);
     }
     
     static void gradeLevel(){
-        history.add("Grade Level");
+        if(recordHistory)history.add("Grade Level");
+        recordHistory = true;
+        String prompt = "Please enter your grade level";
+        String temp = parseInput(prompt);
     }
-    
+    //special prompt for this one
     static void teacherUserName(){
-        history.add("TeacherUserName");
+        if(recordHistory)history.add("TeacherUserName");
+        recordHistory = true;
+        String prompt = "Please enter an positive integer indicating your choice out of those presented below.";
+        String temp = parseInput(prompt);
     }
     
     static void numStudents(){
-        history.add("NumStudent");
+        if(recordHistory)history.add("NumStudent");
+        recordHistory = true;
+        String prompt = "How many students are you going to supervise?";
+        String temp = parseInput(prompt);
     }
     
     static void numChildren(){
-        history.add("NumChildren");
+        if(recordHistory)history.add("NumChildren");
+        recordHistory = true;
+        String prompt = "How many students are you registering or have registered to use this program?";
+        String temp = parseInput(prompt);
     }
     
     static void childUserName(){
-        history.add("ChildUserName");
+        if(recordHistory)history.add("ChildUserName");
+        recordHistory = true;
+        String prompt = "Enter your student's username.";
+        String temp = parseInput(prompt);
     }
-    
+    //todo: integrate with file parser to get user data
     static void confirmStudent(){
-        history.add("ConfirmStudent");
+        if(recordHistory)history.add("ConfirmStudent");
+        recordHistory = true;
+        String[] allowed = {"yes", "no"};
+        String prompt = "Are the following details correct?!grab student details here!";
+        String need= "Please enter a \'yes\' or a \'no\'.";
+        String input = parseInput(allowed, prompt, need);
+        switch(input){
+            case "yes": type(); break;
+            case "no": open(); break;
+            default: break;
+        }
     }
-    
+    //todo: integrate with file parser to get user data
     static void confirmTeacher(){
-        history.add("ConfirmTeacher");
+        if(recordHistory)history.add("ConfirmTeacher");
+        recordHistory = true;
+        String[] allowed = {"yes", "no"};
+        String prompt = "Are the following details correct?!grab teacher details here!";
+        String need= "Please enter a \'yes\' or a \'no\'.";
+        String input = parseInput(allowed, prompt, need);
+        switch(input){
+            case "yes": type(); break;
+            case "no": open(); break;
+            default: break;
+        }
     }
-    
+    //todo: integrate with file parser to get user data
     static void confirmParent(){
-        history.add("confirmParent");
+        if(recordHistory)history.add("confirmParent");
+        recordHistory = true;
+        String[] allowed = {"yes", "no"};
+        String prompt = "Are the following details correct?!grab parent details here!";
+        String need= "Please enter a \'yes\' or a \'no\'.";
+        String input = parseInput(allowed, prompt, need);
+        switch(input){
+            case "yes": type(); break;
+            case "no": open(); break;
+            default: break;
+        }
     }
     
     static void studentMenu(){
-        history.add("StudentMenu");
+        if(recordHistory)history.add("StudentMenu");
+        recordHistory = true;
+        String[] allowed = {"1","2"};
+        String prompt = "Please select one of the options below:\n1. Take Quiz\n2. Log out.";
+        String need = "Please indicate your choice using either 1 or 2.";
+        String input = parseInput(allowed, prompt, need);
+        switch(input){
+            case "1": quiz(); break;
+            case "2": System.out.println("Thank you !insert name here! for using MyLabsMinus. Please come again.\n");open(); break;
+            default: break;
+        }
     }
     
     static void teacherMenu(){
-        history.add("TeacherMenu");
+        if(recordHistory)history.add("TeacherMenu");
+        recordHistory = true;
     }
     
     static void parentMenu(){
-        history.add("ParentMenu");
+        if(recordHistory)history.add("ParentMenu");
+        recordHistory = true;
     }
     
     static void quiz(){
-        history.add("Quiz");
+        if(recordHistory)history.add("Quiz");
+        recordHistory = true;
     }
     
     static void search(){
-        history.add("Search");
+        if(recordHistory)history.add("Search");
+        recordHistory = true;
     }
     
     static void printReport(){
-        history.add("PrintReport");
+        if(recordHistory)history.add("PrintReport");
+        recordHistory = true;
     }
 }
