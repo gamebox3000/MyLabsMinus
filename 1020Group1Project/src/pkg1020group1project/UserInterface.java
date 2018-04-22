@@ -72,9 +72,15 @@ public class UserInterface {
                 if (history.isEmpty()) {
                     System.out.println("Cannot run /back commmand: there is no menu to go back to");
                 } else {
-                    recordHistory = false;
-                    history.remove(history.size()-1);
-                    dialogTree(history.get(history.size() - 1));
+                    
+                    
+                    if(history.size() <= 2){
+                        System.out.println("Cannot run /back commmand: there is no menu to go back to");
+                    } else {
+                        recordHistory = false;
+                        history.remove(history.size()-1);
+                        dialogTree(history.get(history.size() - 1));
+                    }
                 }
                 break;
             //Help command prints list of valid commands to the user and reprints message.
@@ -128,7 +134,8 @@ public class UserInterface {
      * into dialog
      */
     public static void open(){
-        history.add("Open");
+        if(recordHistory)history.add("Open");
+        recordHistory = true;
         String[] allowed = {"1","2"};
         String prompt = "Welcome to MyLabsMinus\nType /help for a list of commands\nFrom here you can either login or create a new account.\nPlease indicate your choice by entering the corresponding number:\n1. Login\n2. New User";
         String need = "Please enter either a 1 or 2, indicating your choice.";
@@ -144,7 +151,8 @@ public class UserInterface {
      * user login dialog
      */
     static void login(){
-        history.add("Login");
+        if(recordHistory)history.add("Login");
+        recordHistory = true;
         String[] allowed = {"student", "teacher", "parent"};
         String prompt = "Please enter your username to login !Temp enter student/teacher/parent!";
         String need = "student/teacher/parent";
@@ -164,7 +172,8 @@ public class UserInterface {
      * strings so they can be written to the text file
      */
     static void type(){
-        history.add("type");
+        if(recordHistory)history.add("Type");
+        recordHistory = true;
         String[] allowed = {"1","2","3"};
         String prompt = "Are you a:\n1. Student\n2. Teacher\n3. Parent";
         String need = "Please enter a 1, 2, or 3, indicating your choice.";
