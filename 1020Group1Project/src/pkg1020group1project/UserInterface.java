@@ -71,20 +71,22 @@ public class UserInterface {
             case "/back":
                 if (history.isEmpty()) {
                     System.out.println("Cannot run /back commmand: there is no menu to go back to");
+                    open();
                 } else {
                     
                     
                     if(history.size() <= 2){
                         System.out.println("Cannot run /back commmand: there is no menu to go back to");
+                        dialogTree(history.get(history.size() - 1));
                     } else {
                         try {
                             recordHistory = false;
                             history.remove(history.size()-1);
                             dialogTree(history.get(history.size() - 1));
                         } catch (ArrayIndexOutOfBoundsException ex) {
-                            
-                        }
-                        
+                            System.out.println("Cannot run /back command: here is no menu to go back to");
+                            dialogTree(history.get(history.size() - 1));
+                        }  
                     }
                 }
                 break;
@@ -303,7 +305,7 @@ public class UserInterface {
         String input = parseInput(allowed, prompt, need);
         switch(input){
             case "yes": 
-                UserData.addUser(currentStudent);
+                UserData.addUser("", currentUser);
                 open(); 
                 break;
             case "no": type(); break;
@@ -324,7 +326,7 @@ public class UserInterface {
         String input = parseInput(allowed, prompt, need);
         switch(input){
             case "yes": 
-                UserData.addUser(currentTeacher);
+                UserData.addUser("", currentUser);
                 open(); 
                 break;
             case "no": type(); break;
@@ -345,7 +347,7 @@ public class UserInterface {
         String input = parseInput(allowed, prompt, need);
         switch(input){
             case "yes": 
-                UserData.addUser(currentParent);
+                UserData.addUser("", currentUser);
                 open(); 
                 break;
             case "no": type(); break;
