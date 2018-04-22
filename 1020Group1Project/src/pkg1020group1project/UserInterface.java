@@ -19,7 +19,7 @@ public class UserInterface {
     static ArrayList<String> history = new ArrayList<>();
     static Scanner uIn = new Scanner(System.in);
     static boolean recordHistory = true;
-    static User currentUser;
+    static User currentUser = new User();
     /**
      * Loops through input until a valid input is given, or executes a command
      * @param acceptableIns takes an array of acceptable inputs
@@ -50,7 +50,6 @@ public class UserInterface {
      * @return the users input no matter what, or null if a command is given
      */
     static String parseInput(String prompt) {
-        while (true) {
             System.out.println(prompt);
             System.out.print("\n\n>>>");
             String input = uIn.nextLine();
@@ -59,6 +58,38 @@ public class UserInterface {
                 return null;
             }
             return input;
+    }
+    /**
+     * @param min the smallest integer allowed, inclusive
+     * @param max the largest integer allowed, inclusive
+     * @param prompt the prompt for a number
+     * @return an integer value
+     */
+    static int parseIntInput(int min, int max, String prompt){
+        while (true) {
+            System.out.println(prompt);
+            System.out.print("\n\n>>>");
+            String input = uIn.nextLine();
+            int intInput = 0;
+            if (input.startsWith("/")) {
+                executeCommand(input);
+                return 0;
+            }
+            boolean invalid = true;
+            while(invalid){
+                try {
+                    intInput = Integer.parseInt(input);
+                    if (intInput <= max && intInput >= min){
+                        return intInput;
+                    } else {
+                        System.out.println("Please enter an interger between "+min+" and "+max);
+                        invalid = false;
+                    }
+
+                } catch(NumberFormatException ex){
+                    System.out.println("Please input an intager");
+                }
+            }
         }
     }
     /**
@@ -413,31 +444,33 @@ public class UserInterface {
         String prompt = "Plase select your problem type:\n1. addition.\n2. subtraction.\n3. multiplication.\n4. devition.\n5. random mixture.";
         String need = "Plase indicate your choice using a number from 1 to 5.";
         String input = parseInput(allowed, prompt, need);
-        ProblemGenerator[] quiz = new ProblemGenerator[10];
+        int length = parseIntInput(1,100,"Please enter the length of your quiz.");
+        int level = parseIntInput(0,12,"Please enter the grade level you would like to take this test at.");
+        ProblemGenerator[] quiz = new ProblemGenerator[length];
         switch(input){
             case "1":
                 for(int n = 0; n < quiz.length; n++){
-                    quiz[n] = new ProblemGenerator("add");
+                    quiz[n] = new ProblemGenerator("add", level);
                 }
                 break;
             case "2": 
                 for(int n = 0; n < quiz.length; n++){
-                    quiz[n] = new ProblemGenerator("sub");
+                    quiz[n] = new ProblemGenerator("sub", level);
                 }
                 break;
             case "3": 
                 for(int n = 0; n < quiz.length; n++){
-                    quiz[n] = new ProblemGenerator("multi");
+                    quiz[n] = new ProblemGenerator("multi", level);
                 }
                 break;
             case "4": 
                 for(int n = 0; n < quiz.length; n++){
-                    quiz[n] = new ProblemGenerator("dev");
+                    quiz[n] = new ProblemGenerator("dev", level);
                 }
                 break;
             case "5": 
                 for(int n = 0; n < quiz.length; n++){
-                    quiz[n] = new ProblemGenerator();
+                    quiz[n] = new ProblemGenerator(level);
                 }
                 break;
             default: break;
