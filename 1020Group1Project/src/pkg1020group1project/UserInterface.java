@@ -19,7 +19,13 @@ public class UserInterface {
     static ArrayList<String> history = new ArrayList<>();
     static Scanner uIn = new Scanner(System.in);
     static boolean recordHistory = true;
-
+    /**
+     * Loops through input until a valid input is given, or executes a command
+     * @param acceptableIns takes an array of acceptable inputs
+     * @param prompt the inital prompt for the input
+     * @param needs prompt if invalid input is given
+     * @return the users input if valid, or null if a command is given
+     */
     static String parseInput(String[] acceptableIns, String prompt,String needs) {
         while (true) {
             System.out.println(prompt);
@@ -37,7 +43,11 @@ public class UserInterface {
             System.out.println(needs);
         }
     }
-    
+    /**
+     * Prompts the user and returns valid input, or executes a command
+     * @param prompt initial prompt for user input
+     * @return the users input no matter what, or null if a command is given
+     */
     static String parseInput(String prompt) {
         while (true) {
             System.out.println(prompt);
@@ -50,7 +60,10 @@ public class UserInterface {
             return input;
         }
     }
-
+    /**
+     * executes special commands if typed in
+     * @param input the command to execute
+     */
     static void executeCommand(String input) {
         switch (input.toLowerCase()) {
             //Back command takes user to the previous message in the message history.
@@ -80,7 +93,10 @@ public class UserInterface {
                 break;
         }
     }
-
+    /**
+     * used to associate the history saved in recordHistroy into their respective dialogs
+     * @param branch the associated dialog to be called
+     */
     static void dialogTree(String branch) {
         switch (branch){
             case "Open": open(); break;//0
@@ -107,7 +123,9 @@ public class UserInterface {
             default: throw new IllegalArgumentException();
         }
     }
-    
+    /**
+     * into dialog
+     */
     public static void open(){
         history.add("Open");
         String[] allowed = {"1","2"};
@@ -121,7 +139,9 @@ public class UserInterface {
         }
         
     }
-    
+    /**
+     * user login dialog
+     */
     static void login(){
         history.add("Login");
         String[] allowed = {"student", "teacher", "parent"};
@@ -138,6 +158,7 @@ public class UserInterface {
         
     }
     /**
+     * user creation type selection
      * !!Note: in the future change methods called within this one to return
      * strings so they can be written to the text file
      */
@@ -174,35 +195,45 @@ public class UserInterface {
             default: break;
         }
     }
-    
+    /**
+     * username input
+     */
     static void userName(){
         if(recordHistory)history.add("UserName");
         recordHistory = true;
         String prompt = "Please enter a unique username";
         String temp = parseInput(prompt);
     }
-    
+    /**
+     * first name input
+     */
     static void firstName(){
         if(recordHistory)history.add("FirstName");
         recordHistory = true;
         String prompt = "Please enter your first name";
         String temp = parseInput(prompt);
     }
-    
+    /**
+     * last name input
+     */
     static void lastName(){
         if(recordHistory)history.add("LastName");
         recordHistory = true;
         String prompt = "please enter your last name";
         String temp = parseInput(prompt);
     }
-    
+    /**
+     * email input
+     */
     static void email(){
         if(recordHistory)history.add("Email");
         recordHistory = true;
         String prompt = "Please enter your email";
         String temp = parseInput(prompt);
     }
-    
+    /**
+     * grade level input
+     */
     static void gradeLevel(){
         if(recordHistory)history.add("Grade Level");
         recordHistory = true;
@@ -210,27 +241,36 @@ public class UserInterface {
         String temp = parseInput(prompt);
     }
     //special prompt for this one needs integration with file parser
+    /**
+     * let students select teacher
+     */
     static void teacherUserName(){
         if(recordHistory)history.add("TeacherUserName");
         recordHistory = true;
         String prompt = "Please enter an positive integer indicating your choice out of those presented below.";
         String temp = parseInput(prompt);
     }
-    
+    /**
+     * let teacher select number of students
+     */
     static void numStudents(){
         if(recordHistory)history.add("NumStudent");
         recordHistory = true;
         String prompt = "How many students are you going to supervise?";
         String temp = parseInput(prompt);
     }
-    
+    /**
+     * let parent select number of children
+     */
     static void numChildren(){
         if(recordHistory)history.add("NumChildren");
         recordHistory = true;
         String prompt = "How many students are you registering or have registered to use this program?";
         String temp = parseInput(prompt);
     }
-    
+    /**
+     * let parents select child to associate with
+     */
     static void childUserName(){
         if(recordHistory)history.add("ChildUserName");
         recordHistory = true;
@@ -238,6 +278,9 @@ public class UserInterface {
         String temp = parseInput(prompt);
     }
     //todo: integrate with file parser to get user data
+    /**
+     * confirms user creation for student
+     */
     static void confirmStudent(){
         if(recordHistory)history.add("ConfirmStudent");
         recordHistory = true;
@@ -252,6 +295,9 @@ public class UserInterface {
         }
     }
     //todo: integrate with file parser to get user data
+    /**
+     * confirm user creation for teacher
+     */
     static void confirmTeacher(){
         if(recordHistory)history.add("ConfirmTeacher");
         recordHistory = true;
@@ -266,6 +312,9 @@ public class UserInterface {
         }
     }
     //todo: integrate with file parser to get user data
+    /**
+     * confirm user creation for parent
+     */
     static void confirmParent(){
         if(recordHistory)history.add("confirmParent");
         recordHistory = true;
@@ -279,7 +328,9 @@ public class UserInterface {
             default: break;
         }
     }
-    
+    /**
+     * student menu after logging in
+     */
     static void studentMenu(){
         if(recordHistory)history.add("StudentMenu");
         recordHistory = true;
@@ -293,7 +344,9 @@ public class UserInterface {
             default: break;
         }
     }
-    
+    /**
+     * teacher menu after logging in
+     */
     static void teacherMenu(){
         if(recordHistory)history.add("TeacherMenu");
         recordHistory = true;
@@ -307,7 +360,9 @@ public class UserInterface {
             default: break;
         }
     }
-    
+    /**
+     * parent menu after logging in
+     */
     static void parentMenu(){
         if(recordHistory)history.add("ParentMenu");
         recordHistory = true;
@@ -321,17 +376,23 @@ public class UserInterface {
             default: break;
         }
     }
-    
+    /**
+     * quiz for student
+     */
     static void quiz(){
         if(recordHistory)history.add("Quiz");
         recordHistory = true;
     }
-    
+    /**
+     * search students for teacher
+     */
     static void search(){
         if(recordHistory)history.add("Search");
         recordHistory = true;
     }
-    
+    /**
+     * print report for children
+     */
     static void printReport(){
         if(recordHistory)history.add("PrintReport");
         recordHistory = true;
