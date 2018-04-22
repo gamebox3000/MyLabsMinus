@@ -30,10 +30,12 @@ public class User {
         this.firstName = firstName;
         this.eMail = eMail;
     }
+    
     /**
      * Sets the userName field of the User.
      * @param newUserName The String to which to set userName.
      */
+    
     public void setUserName(String newUserName) {
         userName = newUserName;
     }
