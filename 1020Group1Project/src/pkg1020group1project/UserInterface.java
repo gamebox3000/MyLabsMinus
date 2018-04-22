@@ -77,9 +77,14 @@ public class UserInterface {
                     if(history.size() <= 2){
                         System.out.println("Cannot run /back commmand: there is no menu to go back to");
                     } else {
-                        recordHistory = false;
-                        history.remove(history.size()-1);
-                        dialogTree(history.get(history.size() - 1));
+                        try {
+                            recordHistory = false;
+                            history.remove(history.size()-1);
+                            dialogTree(history.get(history.size() - 1));
+                        } catch (ArrayIndexOutOfBoundsException ex) {
+                            
+                        }
+                        
                     }
                 }
                 break;
