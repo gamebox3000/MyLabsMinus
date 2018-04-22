@@ -382,6 +382,46 @@ public class UserInterface {
     static void quiz(){
         if(recordHistory)history.add("Quiz");
         recordHistory = true;
+        String[] allowed = {"1","2","3","4","5"};
+        String prompt = "Plase select your problem type:\n1. addition.\n2. subtraction.\n3. multiplication.\n4. devition.\n5. random mixture.";
+        String need = "Plase indicate your choice using a number from 1 to 5.";
+        String input = parseInput(allowed, prompt, need);
+        ProblemGenerator[] quiz = new ProblemGenerator[10];
+        switch(input){
+            case "1":
+                for(int n = 0; n < quiz.length; n++){
+                    quiz[n] = new ProblemGenerator("add");
+                }
+                break;
+            case "2": 
+                for(int n = 0; n < quiz.length; n++){
+                    quiz[n] = new ProblemGenerator("sub");
+                }
+                break;
+            case "3": 
+                for(int n = 0; n < quiz.length; n++){
+                    quiz[n] = new ProblemGenerator("multi");
+                }
+                break;
+            case "4": 
+                for(int n = 0; n < quiz.length; n++){
+                    quiz[n] = new ProblemGenerator("dev");
+                }
+                break;
+            case "5": 
+                for(int n = 0; n < quiz.length; n++){
+                    quiz[n] = new ProblemGenerator();
+                }
+                break;
+            default: break;
+        }
+        for (ProblemGenerator problems: quiz){
+            double answer = AnswerParser.toreader(parseInput(problems.get_Problem()));
+            if (problems.verrifyAnswer(answer)){
+                System.out.println("Correct!");
+            } else System.out.println("Incorrect!!");
+        }
+        studentMenu();
     }
     /**
      * search students for teacher

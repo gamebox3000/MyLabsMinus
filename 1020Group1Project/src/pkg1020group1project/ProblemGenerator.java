@@ -121,7 +121,7 @@ public class ProblemGenerator {
     public ProblemGenerator(String type, double level){
         level = Math.abs(level);
         switch (type){
-        case "div":
+            case "div":
                 devi(level);
                 break;
             case "multi":
