@@ -1,4 +1,4 @@
-package users;
+package pkg1020group1project;
 /**
  * Class Student is a subclass of User that implements the temporary data storage for the student users.
  * @author Stephen Hybeger

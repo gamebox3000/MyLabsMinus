@@ -19,6 +19,7 @@ public class UserInterface {
     static ArrayList<String> history = new ArrayList<>();
     static Scanner uIn = new Scanner(System.in);
     static boolean recordHistory = true;
+    static User currentUser;
     /**
      * Loops through input until a valid input is given, or executes a command
      * @param acceptableIns takes an array of acceptable inputs
@@ -170,12 +171,14 @@ public class UserInterface {
         String input = parseInput(allowed, prompt, need);
         switch (input){
             case "1": 
+                
                 userName();
                 firstName();
                 lastName();
                 email();
                 gradeLevel();
                 teacherUserName();
+                currentUser = new Student();
                 break;
             case "2": 
                 userName();

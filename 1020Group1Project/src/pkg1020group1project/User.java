@@ -1,4 +1,4 @@
-package users;
+package pkg1020group1project;
 /**
  * Class User implements the temporary data storage for users in general (for the fields the subclasses of User share).
  * @author Stephen Hybeger
