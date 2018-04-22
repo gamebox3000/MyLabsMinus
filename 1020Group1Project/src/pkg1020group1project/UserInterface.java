@@ -359,7 +359,7 @@ public class UserInterface {
         if(recordHistory)history.add("StudentMenu");
         recordHistory = true;
         String[] allowed = {"1","2"};
-        String prompt = "Hello "+currentStudent.getUserName()+" ,Please select one of the options below:\n1. Take Quiz\n2. Log out.";
+        String prompt = "Hello "+currentUser.getUserName()+" ,Please select one of the options below:\n1. Take Quiz\n2. Log out.";
         String need = "Please indicate your choice using either 1 or 2.";
         String input = parseInput(allowed, prompt, need);
         switch(input){
@@ -375,7 +375,7 @@ public class UserInterface {
         if(recordHistory)history.add("TeacherMenu");
         recordHistory = true;
         String[] allowed = {"1","2","3"};
-        String prompt = "Hello, "+currentTeacher.getUserName()+", Please select one of the options below:\n1. Search Students\n2. Print Report.\n3. Log out";
+        String prompt = "Hello, "+currentUser.getUserName()+", Please select one of the options below:\n1. Search Students\n2. Print Report.\n3. Log out";
         String need = "Please indicate your choice using either 1 or 2.";
         String input = parseInput(allowed, prompt, need);
         switch(input){
@@ -392,7 +392,7 @@ public class UserInterface {
         if(recordHistory)history.add("ParentMenu");
         recordHistory = true;
         String[] allowed = {"1","2"};
-        String prompt = "Hello, "+currentParent.getUserName()+", Please select one of the options below:\n1. Print Report.\n2. Log out.";
+        String prompt = "Hello, "+currentUser.getUserName()+", Please select one of the options below:\n1. Print Report.\n2. Log out.";
         String need = "Please indicate your choice using either 1 or 2.";
         String input = parseInput(allowed, prompt, need);
         switch(input){
