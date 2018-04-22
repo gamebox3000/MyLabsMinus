@@ -9,6 +9,6 @@ package pkg1020group1project;
  *
  * @author Jonathan Babb
  */
-public class FileInterface {
+public class UserData {
     
 }
