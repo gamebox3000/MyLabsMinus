@@ -169,31 +169,38 @@ public class UserInterface {
         String prompt = "Are you a:\n1. Student\n2. Teacher\n3. Parent";
         String need = "Please enter a 1, 2, or 3, indicating your choice.";
         String input = parseInput(allowed, prompt, need);
+        String userName;
+        String firstName;
+        String lastName;
+        String email;
         switch (input){
             case "1": 
-                
-                userName();
-                firstName();
-                lastName();
-                email();
-                gradeLevel();
-                teacherUserName();
-                currentUser = new Student();
+                userName = userName();
+                firstName = firstName();
+                lastName = lastName();
+                email = email();
+                String gradeLevel = gradeLevel();
+                String teacherUsername = teacherUserName();
+                currentUser = new Student(userName, firstName, lastName, email, gradeLevel, teacherUsername);
+                confirmStudent();
                 break;
             case "2": 
-                userName();
-                firstName();
-                lastName();
-                email();
-                numStudents();
+                userName = userName();
+                firstName = firstName();
+                lastName = lastName();
+                email = email();
+                String numStudents = numStudents();
+                currentUser = new Teacher(userName, firstName, lastName, email, numStudents);
+                confirmTeacher();
                 break;
             case "3": 
-                userName();
-                firstName();
-                lastName();
-                email();
-                numChildren();
-                childUserName();
+                userName = userName();
+                firstName = firstName();
+                lastName = lastName();
+                email = email();
+                String numChildren = numChildren();
+                currentUser = new Parent(userName, firstName, lastName, email, numChildren);
+                confirmParent();
                 break;
             default: break;
         }
@@ -201,84 +208,84 @@ public class UserInterface {
     /**
      * username input
      */
-    static void userName(){
+    static String userName(){
         if(recordHistory)history.add("UserName");
         recordHistory = true;
         String prompt = "Please enter a unique username";
-        String temp = parseInput(prompt);
+        return parseInput(prompt);
     }
     /**
      * first name input
      */
-    static void firstName(){
+    static String firstName(){
         if(recordHistory)history.add("FirstName");
         recordHistory = true;
         String prompt = "Please enter your first name";
-        String temp = parseInput(prompt);
+        return parseInput(prompt);
     }
     /**
      * last name input
      */
-    static void lastName(){
+    static String lastName(){
         if(recordHistory)history.add("LastName");
         recordHistory = true;
         String prompt = "please enter your last name";
-        String temp = parseInput(prompt);
+        return parseInput(prompt);
     }
     /**
      * email input
      */
-    static void email(){
+    static String email(){
         if(recordHistory)history.add("Email");
         recordHistory = true;
         String prompt = "Please enter your email";
-        String temp = parseInput(prompt);
+        return parseInput(prompt);
     }
     /**
      * grade level input
      */
-    static void gradeLevel(){
+    static String gradeLevel(){
         if(recordHistory)history.add("Grade Level");
         recordHistory = true;
         String prompt = "Please enter your grade level";
-        String temp = parseInput(prompt);
+        return parseInput(prompt);
     }
     //special prompt for this one needs integration with file parser
     /**
      * let students select teacher
      */
-    static void teacherUserName(){
+    static String teacherUserName(){
         if(recordHistory)history.add("TeacherUserName");
         recordHistory = true;
         String prompt = "Please enter an positive integer indicating your choice out of those presented below.";
-        String temp = parseInput(prompt);
+        return parseInput(prompt);
     }
     /**
      * let teacher select number of students
      */
-    static void numStudents(){
+    static String numStudents(){
         if(recordHistory)history.add("NumStudent");
         recordHistory = true;
         String prompt = "How many students are you going to supervise?";
-        String temp = parseInput(prompt);
+        return parseInput(prompt);
     }
     /**
      * let parent select number of children
      */
-    static void numChildren(){
+    static String numChildren(){
         if(recordHistory)history.add("NumChildren");
         recordHistory = true;
         String prompt = "How many students are you registering or have registered to use this program?";
-        String temp = parseInput(prompt);
+        return parseInput(prompt);
     }
     /**
      * let parents select child to associate with
      */
-    static void childUserName(){
+    static String childUserName(){
         if(recordHistory)history.add("ChildUserName");
         recordHistory = true;
         String prompt = "Enter your student's username.";
-        String temp = parseInput(prompt);
+        return parseInput(prompt);
     }
     //todo: integrate with file parser to get user data
     /**
@@ -292,10 +299,14 @@ public class UserInterface {
         String need= "Please enter a \'yes\' or a \'no\'.";
         String input = parseInput(allowed, prompt, need);
         switch(input){
-            case "yes": type(); break;
-            case "no": open(); break;
+            case "yes": 
+                UserData.addUser("student", currentUser);
+                open(); 
+                break;
+            case "no": type(); break;
             default: break;
         }
+        
     }
     //todo: integrate with file parser to get user data
     /**
@@ -309,10 +320,14 @@ public class UserInterface {
         String need= "Please enter a \'yes\' or a \'no\'.";
         String input = parseInput(allowed, prompt, need);
         switch(input){
-            case "yes": type(); break;
-            case "no": open(); break;
+            case "yes": 
+                UserData.addUser("teacher", currentUser);
+                open(); 
+                break;
+            case "no": type(); break;
             default: break;
         }
+        
     }
     //todo: integrate with file parser to get user data
     /**
@@ -326,8 +341,11 @@ public class UserInterface {
         String need= "Please enter a \'yes\' or a \'no\'.";
         String input = parseInput(allowed, prompt, need);
         switch(input){
-            case "yes": type(); break;
-            case "no": open(); break;
+            case "yes": 
+                UserData.addUser("parent", currentUser);
+                open(); 
+                break;
+            case "no": type(); break;
             default: break;
         }
     }
