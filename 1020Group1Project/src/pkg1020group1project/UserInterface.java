@@ -293,8 +293,9 @@ public class UserInterface {
     static String teacherUserName(){
         if(recordHistory)history.add("TeacherUserName");
         recordHistory = true;
-        String prompt = "Please enter an positive integer indicating your choice out of those presented below.";
-        return parseInput(prompt);
+        String prompt = "Please enter an positive integer indicating your choice out of those presented below."+UserData.listUser(false, false, true);
+        int input = parseIntInput(1, UserData.teachers.size(), prompt)-1;
+        return UserData.teachers.get(input).getUserName();
     }
     /**
      * let teacher select number of students

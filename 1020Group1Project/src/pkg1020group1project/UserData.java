@@ -32,6 +32,36 @@ public class UserData {
         }
     }
     /**
+     * returns list of users
+     * @param includeParents include parents in list
+     * @param includeStudents include students in list
+     * @param includeTeachers include teachers in list
+     * @return list of users
+     */
+    public static String listUser(boolean includeParents, boolean includeStudents, boolean includeTeachers){
+        String userList = "";
+        int count = 1;
+        if(includeParents){
+            for(Parent parent: parents){
+                userList += "\n"+count+". "+parent.getUserName();
+                count++;
+            }
+        }
+        if (includeStudents){
+            for(Student student: students){
+                userList += "\n"+count+". "+student.getUserName();
+                count++;
+            }
+        }
+        if (includeTeachers){
+            for(Teacher teacher: teachers){
+                userList += "\n"+count+". "+teacher.getUserName();
+                count++;
+            }
+        }
+        return userList;
+    }
+    /**
      * The contains method checks for a match between the username parameter and all the usernames in the arrayLists.
      * @param userName The user name to check for.
      * @return True if match is found and false if there is no match.
