@@ -336,7 +336,7 @@ public class UserInterface {
         String input = parseInput(allowed, prompt, need);
         switch(input){
             case "yes": 
-                UserData.addUser("", currentUser);
+                UserData.addUser(currentUser);
                 open(); 
                 break;
             case "no": type(); break;
@@ -357,7 +357,7 @@ public class UserInterface {
         String input = parseInput(allowed, prompt, need);
         switch(input){
             case "yes": 
-                UserData.addUser("", currentUser);
+                UserData.addUser(currentUser);
                 open(); 
                 break;
             case "no": type(); break;
@@ -378,7 +378,7 @@ public class UserInterface {
         String input = parseInput(allowed, prompt, need);
         switch(input){
             case "yes": 
-                UserData.addUser("", currentUser);
+                UserData.addUser(currentUser);
                 open(); 
                 break;
             case "no": type(); break;

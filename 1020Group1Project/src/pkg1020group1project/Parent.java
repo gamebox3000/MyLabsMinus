@@ -60,4 +60,12 @@ public class Parent extends User{
     public void setNumberOfChildren(String newNumberOfChildren) {
         numberOfChildren = newNumberOfChildren;
     }
+    @Override
+    public String toString() {
+        String students = "";
+        for (Student child : getArrayOfChildren()) {
+            students += "\n" + child.getFirstName() + " " + child.getLastName() + " (" + child.getUserName() + ")";
+        }
+        return super.toString() + students;
+    }
 }

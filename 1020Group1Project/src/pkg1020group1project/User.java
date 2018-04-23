@@ -88,4 +88,12 @@ public class User {
     public String getEMail() {
         return eMail;
     }
+    /**
+     * Prints out all the details of the user.
+     * @return 
+     */
+    @Override
+    public String toString() {
+        return "Username: " + userName + "\nFirst Name: " + firstName + "\nLast Name: " + lastName + "\nEmail: " + eMail;
+    }
 }

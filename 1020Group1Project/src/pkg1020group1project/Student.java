@@ -10,6 +10,7 @@ public class Student extends User {
      */
     public Student() {
         teacherUserName = "";
+        
     }
     /**
      * A constructor for Student that sets values based on parameters
@@ -37,4 +38,12 @@ public class Student extends User {
     public String getTeacherUserName() {
         return teacherUserName;
     }
+    /**
+     * Returns a String representation of the Object.
+     * @return A String representation of the Object.
+     */
+    @Override
+    public String toString() {
+        return super.toString() + "\nTeacher: " + teacherUserName;
+ }
 }

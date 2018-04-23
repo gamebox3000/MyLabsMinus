@@ -61,4 +61,8 @@ public class Teacher extends User{
     public ArrayList<Student> getArrayOfStudents() {
         return arrayOfStudents;
     }
+    @Override
+    public String toString() {
+        return super.toString() + "\nMaximum Students: " + maxStudents;
+    }
 }
