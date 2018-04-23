@@ -88,25 +88,24 @@ public class UserData {
      * @param userName The username of the User.
      * @throws IllegalArgumentException if the user is not found.
      */
-    public static void printDetails(String userName) {
+    public static String getDetails(String userName) {
         if (contains(userName)) {
             for (Parent parent : parents) {
                 if (parent.getUserName().equals(userName)) {
-                    System.out.println(parent);
+                    return parent.toString();
                 }
             }
             for (Student student : students) {
                 if (student.getUserName().equals(userName)) {
-                    System.out.println(student);
+                    return student.toString();
                 }
             }
             for (Teacher teacher : teachers) {
                 if (teacher.getUserName().equals(userName)) {
-                    System.out.println(teacher);
+                    return teacher.toString();
                 }
             }
-        } else {
-            throw new IllegalArgumentException("User not found");
-        }
+        } 
+        return null;
     }
 }

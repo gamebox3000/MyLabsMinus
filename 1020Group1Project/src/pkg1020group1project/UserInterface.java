@@ -5,7 +5,6 @@
  */
 package pkg1020group1project;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -497,5 +496,12 @@ public class UserInterface {
     static void printReport(){
         if(recordHistory)history.add("PrintReport");
         recordHistory = true;
+        String prompt = "Please enter in a username to see report";
+        String userData;
+        do {
+            String input = parseInput(prompt);
+            userData = UserData.getDetails(input);
+            if (userData == null) System.out.println("User "+input+" was not found");
+        } while (userData == null);
     }
 }
