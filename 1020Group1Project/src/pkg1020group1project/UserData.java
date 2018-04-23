@@ -12,9 +12,9 @@ import java.util.ArrayList;
  * @author Stephen Hyberger
  */
 public class UserData {
-    private static ArrayList<Parent> parents = new ArrayList<>();
-    private static ArrayList<Student> students = new ArrayList<>();
-    private static ArrayList<Teacher> teachers = new ArrayList<>();
+    public static ArrayList<Parent> parents = new ArrayList<>();
+    public static ArrayList<Student> students = new ArrayList<>();
+    public static ArrayList<Teacher> teachers = new ArrayList<>();
     /**
      * Adds user to the corresponding arrayList.
      * @param user The User to add to the arrayLists
