@@ -65,29 +65,30 @@ public class UserInterface {
      * @param prompt the prompt for a number
      * @return an integer value
      */
-    static int parseIntInput(int min, int max, String prompt){
+    static int parseIntInput(int min, int max, String prompt) throws NumberFormatException {
         while (true) {
             System.out.println(prompt);
             System.out.print("\n\n>>>");
             String input = uIn.nextLine();
-            int intInput = 0;
+            int intInput;
             if (input.startsWith("/")) {
                 executeCommand(input);
                 return 0;
             }
-            boolean invalid = true;
-            while(invalid){
+            boolean valid = true;
+            while(valid){
                 try {
                     intInput = Integer.parseInt(input);
                     if (intInput <= max && intInput >= min){
                         return intInput;
                     } else {
                         System.out.println("Please enter an interger between "+min+" and "+max);
-                        invalid = false;
+                        valid = false;
                     }
 
                 } catch(NumberFormatException ex){
                     System.out.println("Please input an intager");
+                    valid = false;
                 }
             }
         }
@@ -331,7 +332,7 @@ public class UserInterface {
         if(recordHistory)history.add("ConfirmStudent");
         recordHistory = true;
         String[] allowed = {"yes", "no"};
-        String prompt = "Are the following details correct?\nUserName: ";
+        String prompt = "Are the following details correct?\n"+currentUser.toString();
         String need= "Please enter a \'yes\' or a \'no\'.";
         String input = parseInput(allowed, prompt, need);
         switch(input){
@@ -352,7 +353,7 @@ public class UserInterface {
         if(recordHistory)history.add("ConfirmTeacher");
         recordHistory = true;
         String[] allowed = {"yes", "no"};
-        String prompt = "Are the following details correct?!grab teacher details here!";
+        String prompt = "Are the following details correct?\n"+currentUser.toString();
         String need= "Please enter a \'yes\' or a \'no\'.";
         String input = parseInput(allowed, prompt, need);
         switch(input){
@@ -373,7 +374,7 @@ public class UserInterface {
         if(recordHistory)history.add("confirmParent");
         recordHistory = true;
         String[] allowed = {"yes", "no"};
-        String prompt = "Are the following details correct?!grab parent details here!";
+        String prompt = "Are the following details correct?\n"+currentUser.toString();
         String need= "Please enter a \'yes\' or a \'no\'.";
         String input = parseInput(allowed, prompt, need);
         switch(input){
@@ -397,7 +398,7 @@ public class UserInterface {
         String input = parseInput(allowed, prompt, need);
         switch(input){
             case "1": quiz(); break;
-            case "2": System.out.println("Thank you !insert name here! for using MyLabsMinus. Please come again.\n");open(); break;
+            case "2": System.out.println("\nThank you "+currentUser.getUserName()+" for using MyLabsMinus. Please come again.\n");open(); break;
             default: break;
         }
     }
@@ -414,7 +415,7 @@ public class UserInterface {
         switch(input){
             case "1": search(); break;
             case "2": printReport(); break;
-            case "3": System.out.println("Thank you !insert name here! for using MyLabsMinus. Please come again.\n");open(); break;
+            case "3": System.out.println("\nThank you "+currentUser.getUserName()+" for using MyLabsMinus. Please come again.\n");open(); break;
             default: break;
         }
     }
@@ -430,7 +431,7 @@ public class UserInterface {
         String input = parseInput(allowed, prompt, need);
         switch(input){
             case "1": printReport(); break;
-            case "2": System.out.println("Thank you !insert name here! for using MyLabsMinus. Please come again.\n");open(); break;
+            case "2": System.out.println("\nThank you "+currentUser.getUserName()+" for using MyLabsMinus. Please come again.\n");open(); break;
             default: break;
         }
     }

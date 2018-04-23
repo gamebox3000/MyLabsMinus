@@ -37,7 +37,10 @@ public class AnswerParser {
    static public double toreader(String par)
 
    {
-
+       if (par.isEmpty())
+    {
+           return 0;
+    }
        for (int x = 0; x < par.length(); x++)
     
     {
@@ -55,7 +58,7 @@ public class AnswerParser {
         case '9': break;
         case '0': break;
         case '.': break;
-        default: throw new NumberFormatException();
+        default: return 0;
         
     }
          
