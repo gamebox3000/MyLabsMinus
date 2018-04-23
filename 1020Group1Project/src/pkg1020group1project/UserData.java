@@ -5,7 +5,12 @@
  */
 package pkg1020group1project;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Scanner;
 /**
  * The UserData class manages the temporary data and its flow to and from permanent storage.
  * @author Jonathan Babb
@@ -15,6 +20,9 @@ public class UserData {
     public static ArrayList<Parent> parents = new ArrayList<>();
     public static ArrayList<Student> students = new ArrayList<>();
     public static ArrayList<Teacher> teachers = new ArrayList<>();
+    static File studentFile = new File("Student.txt");
+    static File parentFile = new File("Parent.txt");
+    static File teacherFile = new File("Teacher.txt");
     /**
      * Adds user to the corresponding arrayList.
      * @param user The User to add to the arrayLists
@@ -30,6 +38,46 @@ public class UserData {
         } else {
             throw new IllegalArgumentException("Tried to add generic User");
         }
+    }
+    public static void update() throws FileNotFoundException{
+        Scanner sIn = new Scanner(studentFile);
+        Scanner pIn = new Scanner(parentFile);
+        Scanner tIn = new Scanner(teacherFile);
+        String[] sStrings = sIn.next().split(";");
+        for(int n = 0; n < sStrings.length; n++){
+            String temp[] = sStrings[n].split(" ");
+            String userName = temp[0];
+            String firstName = temp[1];
+            String lastName = temp[2];
+            String email = temp[3];
+            String teacherUN = temp[4];
+            Student s = new Student(userName, firstName, lastName, email, teacherUN);
+            students.add(s);
+        }
+    }
+    /**
+     * 
+     * @throws IOException 
+     */
+    public static void save() throws IOException{
+        if(!studentFile.exists()) studentFile.createNewFile();
+        if(!parentFile.exists()) parentFile.createNewFile();
+        if(!teacherFile.exists()) teacherFile.createNewFile();
+        PrintWriter sOut = new PrintWriter(studentFile);
+        PrintWriter pOut = new PrintWriter(parentFile);
+        PrintWriter tOut = new PrintWriter(teacherFile);
+        for(Teacher t: teachers){
+            tOut.print(t.getUserName()+" "+t.getFirstName()+" "+t.getLastName()+" "+t.getEMail()+" "+t.getNumberOfStudents()+"; \n");
+        }
+        tOut.close();
+        for(Parent p: parents){
+            pOut.print(p.getUserName()+" "+p.getFirstName()+" "+p.getLastName()+" "+p.getEMail()+" "+p.getNumberOfChildren()+";\n");
+        }
+        pOut.close();
+        for(Student s: students){
+            sOut.print(s.getUserName()+" "+s.getFirstName()+" "+s.getLastName()+" "+s.getEMail()+" "+s.getTeacherUserName()+";\n");
+        }
+        sOut.close();
     }
     /**
      * returns list of users
