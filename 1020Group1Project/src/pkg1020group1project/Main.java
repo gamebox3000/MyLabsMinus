@@ -5,6 +5,8 @@
  */
 package pkg1020group1project;
 
+import java.io.FileNotFoundException;
+
 /**
  *
  * @author mboyson
@@ -14,8 +16,9 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         // TODO code application logic here
+        UserData.update();
         UserInterface.open();
     }
     

@@ -504,5 +504,7 @@ public class UserInterface {
             userData = UserData.getDetails(input);
             if (userData == null) System.out.println("User "+input+" was not found");
         } while (userData == null);
+        System.out.println(userData);
+        printReport();
     }
 }

@@ -28,7 +28,7 @@ public class UserData {
      * @param user The User to add to the arrayLists
      * @throws IllegalArgumentException when a generic User is the parameter.
      */
-    public static void addUser(User user){
+    public static void addUser(User user) throws IOException{
         if (user instanceof Student) {
             students.add((Student) user);
         } else if (user instanceof Parent) {
@@ -38,21 +38,47 @@ public class UserData {
         } else {
             throw new IllegalArgumentException("Tried to add generic User");
         }
+        save();
     }
-    public static void update() throws FileNotFoundException{
+    public static void update() throws FileNotFoundException, IOException{
+        if(!studentFile.exists()) studentFile.createNewFile();
+        if(!parentFile.exists()) parentFile.createNewFile();
+        if(!teacherFile.exists()) teacherFile.createNewFile();
         Scanner sIn = new Scanner(studentFile);
         Scanner pIn = new Scanner(parentFile);
         Scanner tIn = new Scanner(teacherFile);
         String[] sStrings = sIn.next().split(";");
         for(int n = 0; n < sStrings.length; n++){
-            String temp[] = sStrings[n].split(" ");
+            String temp[] = sStrings[n].split(",");
             String userName = temp[0];
-            String firstName = temp[1];
-            String lastName = temp[2];
+            String lastName = temp[1];
+            String firstName = temp[2];
             String email = temp[3];
             String teacherUN = temp[4];
             Student s = new Student(userName, firstName, lastName, email, teacherUN);
             students.add(s);
+        }
+        String[] pStrings = pIn.next().split(";");
+        for(int n = 0; n < pStrings.length; n++){
+            String temp[] = pStrings[n].split(",");
+            String userName = temp[0];
+            String lastName = temp[1];
+            String firstName = temp[2];
+            String email = temp[3];
+            String studentNum = temp[4];
+            Parent p = new Parent(userName, firstName, lastName, email, studentNum);
+            parents.add(p);
+        }
+        String[] tStrings = tIn.next().split(";");
+        for(int n = 0; n < tStrings.length; n++){
+            String temp[] = tStrings[n].split(",");
+            String userName = temp[0];
+            String lastName = temp[1];
+            String firstName = temp[2];
+            String email = temp[3];
+            String studentNum = temp[4];
+            Teacher t = new Teacher(userName, firstName, lastName, email, studentNum);
+            teachers.add(t);
         }
     }
     /**
@@ -67,15 +93,15 @@ public class UserData {
         PrintWriter pOut = new PrintWriter(parentFile);
         PrintWriter tOut = new PrintWriter(teacherFile);
         for(Teacher t: teachers){
-            tOut.print(t.getUserName()+" "+t.getFirstName()+" "+t.getLastName()+" "+t.getEMail()+" "+t.getNumberOfStudents()+"; \n");
+            tOut.print(t.getUserName()+","+t.getFirstName()+","+t.getLastName()+","+t.getEMail()+","+t.getNumberOfStudents()+"; \n");
         }
         tOut.close();
         for(Parent p: parents){
-            pOut.print(p.getUserName()+" "+p.getFirstName()+" "+p.getLastName()+" "+p.getEMail()+" "+p.getNumberOfChildren()+";\n");
+            pOut.print(p.getUserName()+","+p.getFirstName()+","+p.getLastName()+","+p.getEMail()+","+p.getNumberOfChildren()+";\n");
         }
         pOut.close();
         for(Student s: students){
-            sOut.print(s.getUserName()+" "+s.getFirstName()+" "+s.getLastName()+" "+s.getEMail()+" "+s.getTeacherUserName()+";\n");
+            sOut.print(s.getUserName()+","+s.getFirstName()+","+s.getLastName()+","+s.getEMail()+","+s.getTeacherUserName()+";\n");
         }
         sOut.close();
     }
