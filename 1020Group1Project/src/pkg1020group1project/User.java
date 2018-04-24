@@ -24,7 +24,7 @@ public class User {
      * @param firstName The first name of the user
      * @param eMail The email of the user
      */
-    public User(String userName, String lastName, String firstName, String eMail) {
+    public User(String userName, String firstName, String lastName, String eMail) {
         this.userName = userName;
         this.lastName = lastName;
         this.firstName = firstName;
