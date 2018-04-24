@@ -1,0 +1,4 @@
+DrFate,Nelson,Kent,magicMan@tower.space,8;
+ProfMohamed,Mohamed,Hanadi,mh@state.edu,20;;;
+TestTeacher,ProfTest,test,test@test.edu,64;;
+T,f,l,e@mail.com,1;
