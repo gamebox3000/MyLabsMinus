@@ -5,22 +5,12 @@
  */
 package pkg1020group1project;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 /**
  *
- * @author mboyson
+ * @author gamebox3000
  */
 public class Main {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) throws FileNotFoundException, IOException {
-        // TODO code application logic here
-        UserData.update();
+    public static void main(String[] args){
         UserInterface.open();
     }
-    
 }
