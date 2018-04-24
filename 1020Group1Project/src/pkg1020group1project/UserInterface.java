@@ -5,6 +5,7 @@
  */
 package pkg1020group1project;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -337,7 +338,11 @@ public class UserInterface {
         String input = parseInput(allowed, prompt, need);
         switch(input){
             case "yes": 
-                UserData.addUser(currentUser);
+                try {
+                    UserData.addUser(currentUser);
+                } catch (IOException ex){
+                    
+                }
                 open(); 
                 break;
             case "no": type(); break;
@@ -358,7 +363,11 @@ public class UserInterface {
         String input = parseInput(allowed, prompt, need);
         switch(input){
             case "yes": 
-                UserData.addUser(currentUser);
+                try {
+                    UserData.addUser(currentUser);
+                } catch (IOException ex){
+                    
+                }
                 open(); 
                 break;
             case "no": type(); break;
@@ -379,7 +388,11 @@ public class UserInterface {
         String input = parseInput(allowed, prompt, need);
         switch(input){
             case "yes": 
-                UserData.addUser(currentUser);
+                try {
+                    UserData.addUser(currentUser);
+                } catch (IOException ex){
+                    
+                }
                 open(); 
                 break;
             case "no": type(); break;
