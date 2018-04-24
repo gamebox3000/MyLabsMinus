@@ -40,7 +40,47 @@ public class UserData {
         }
         save();
     }
-    
+    public static void update() throws FileNotFoundException, IOException{
+        if(!studentFile.exists()) studentFile.createNewFile();
+        if(!parentFile.exists()) parentFile.createNewFile();
+        if(!teacherFile.exists()) teacherFile.createNewFile();
+        Scanner sIn = new Scanner(studentFile);
+        Scanner pIn = new Scanner(parentFile);
+        Scanner tIn = new Scanner(teacherFile);
+        sIn.useDelimiter("\\Z");
+        pIn.useDelimiter("\\Z");
+        tIn.useDelimiter("\\Z");
+        String[] sStrings = sIn.next().split(";\n");
+        for(String s : sStrings){
+            String temp[] = s.split(",");
+            String userName = temp[0];
+            String lastName = temp[1];
+            String firstName = temp[2];
+            String email = temp[3];
+            String teacherUN = temp[4];
+            students.add(new Student(userName, firstName, lastName, email, teacherUN));
+        }
+        String[] pStrings = pIn.next().split(";\n");
+        for(String p : pStrings){
+            String temp[] = p.split(",");
+            String userName = temp[0];
+            String lastName = temp[1];
+            String firstName = temp[2];
+            String email = temp[3];
+            String studentNum = temp[4];
+            parents.add(new Parent(userName, firstName, lastName, email, studentNum));
+        }
+        String[] tStrings = tIn.next().split(";\n");
+        for(String t: tStrings){
+            String temp[] = t.split(",");
+            String userName = temp[0];
+            String lastName = temp[1];
+            String firstName = temp[2];
+            String email = temp[3];
+            String studentNum = temp[4];
+            teachers.add(new Teacher(userName, firstName, lastName, email, studentNum));
+        }
+    }
     /**
      * 
      * @throws IOException 
@@ -53,7 +93,7 @@ public class UserData {
         PrintWriter pOut = new PrintWriter(parentFile);
         PrintWriter tOut = new PrintWriter(teacherFile);
         for(Teacher t: teachers){
-            tOut.print(t.getUserName()+","+t.getFirstName()+","+t.getLastName()+","+t.getEMail()+","+t.getNumberOfStudents()+"; \n");
+            tOut.print(t.getUserName()+","+t.getFirstName()+","+t.getLastName()+","+t.getEMail()+","+t.getNumberOfStudents()+";\n");
         }
         tOut.close();
         for(Parent p: parents){

@@ -1,0 +1,2 @@
+DrFate,Kent,Nelson,magicMan@tower.space,8;
+ProfMohamed,Hanadi,Mohamed,mh@state.edu,20;

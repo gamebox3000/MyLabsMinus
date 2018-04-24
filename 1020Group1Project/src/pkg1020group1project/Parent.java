@@ -22,6 +22,7 @@ public class Parent extends User{
      * @param numberOfChildren The number of children the parent has registered in the program
      */
     public Parent(String userName, String lastName, String firstName, String eMail, String numberOfChildren) {
+        super(userName, lastName, firstName, eMail);
         this.numberOfChildren = numberOfChildren;
     }
     /**
