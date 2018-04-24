@@ -5,7 +5,6 @@
  */
 package pkg1020group1project;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -27,7 +26,7 @@ public class UserInterface {
      * @param needs prompt if invalid input is given
      * @return the users input if valid, or null if a command is given
      */
-    static String parseInput(String[] acceptableIns, String prompt,String needs) throws IOException {
+    static String parseInput(String[] acceptableIns, String prompt,String needs) {
         while (true) {
             System.out.println(prompt);
             System.out.print("\n\n>>>");
@@ -49,7 +48,7 @@ public class UserInterface {
      * @param prompt initial prompt for user input
      * @return the users input no matter what, or null if a command is given
      */
-    static String parseInput(String prompt) throws IOException {
+    static String parseInput(String prompt) {
             System.out.println(prompt);
             System.out.print("\n\n>>>");
             String input = uIn.nextLine();
@@ -65,7 +64,7 @@ public class UserInterface {
      * @param prompt the prompt for a number
      * @return an integer value
      */
-    static int parseIntInput(int min, int max, String prompt) throws NumberFormatException, IOException {
+    static int parseIntInput(int min, int max, String prompt) throws NumberFormatException {
         while (true) {
             System.out.println(prompt);
             System.out.print("\n\n>>>");
@@ -97,7 +96,7 @@ public class UserInterface {
      * executes special commands if typed in
      * @param input the command to execute
      */
-    static void executeCommand(String input) throws IOException {
+    static void executeCommand(String input) {
         switch (input.toLowerCase()) {
             //Back command takes user to the previous message in the message history.
             case "/back":
@@ -143,7 +142,7 @@ public class UserInterface {
      * used to associate the history saved in recordHistroy into their respective dialogs
      * @param branch the associated dialog to be called
      */
-    static void dialogTree(String branch) throws IOException {
+    static void dialogTree(String branch) {
         switch (branch){
             case "Open": open(); break;//0
             case "Login": login(); break;//1
@@ -171,7 +170,7 @@ public class UserInterface {
     /**
      * into dialog
      */
-    public static void open() throws IOException{
+    public static void open(){
         if(recordHistory)history.add("Open");
         recordHistory = true;
         String[] allowed = {"1","2"};
@@ -188,7 +187,7 @@ public class UserInterface {
     /**
      * user login dialog
      */
-    static void login() throws IOException{
+    static void login(){
         if(recordHistory)history.add("Login");
         recordHistory = true;
         String[] allowed = {"student", "teacher", "parent"};
@@ -209,7 +208,7 @@ public class UserInterface {
      * !!Note: in the future change methods called within this one to return
      * strings so they can be written to the text file
      */
-    static void type() throws IOException{
+    static void type(){
         if(recordHistory)history.add("Type");
         recordHistory = true;
         String[] allowed = {"1","2","3"};
@@ -254,7 +253,7 @@ public class UserInterface {
     /**
      * username input
      */
-    static String userName() throws IOException{
+    static String userName(){
         if(recordHistory)history.add("UserName");
         recordHistory = true;
         String prompt = "Please enter a unique username";
@@ -263,7 +262,7 @@ public class UserInterface {
     /**
      * first name input
      */
-    static String firstName() throws IOException{
+    static String firstName(){
         if(recordHistory)history.add("FirstName");
         recordHistory = true;
         String prompt = "Please enter your first name";
@@ -272,7 +271,7 @@ public class UserInterface {
     /**
      * last name input
      */
-    static String lastName() throws IOException{
+    static String lastName(){
         if(recordHistory)history.add("LastName");
         recordHistory = true;
         String prompt = "please enter your last name";
@@ -281,7 +280,7 @@ public class UserInterface {
     /**
      * email input
      */
-    static String email() throws IOException{
+    static String email(){
         if(recordHistory)history.add("Email");
         recordHistory = true;
         String prompt = "Please enter your email";
@@ -291,7 +290,7 @@ public class UserInterface {
     /**
      * let students select teacher
      */
-    static String teacherUserName() throws NumberFormatException, IOException{
+    static String teacherUserName(){
         if(recordHistory)history.add("TeacherUserName");
         recordHistory = true;
         String prompt = "Please enter an positive integer indicating your choice out of those presented below."+UserData.listUser(false, false, true);
@@ -301,7 +300,7 @@ public class UserInterface {
     /**
      * let teacher select number of students
      */
-    static String numStudents() throws IOException{
+    static String numStudents(){
         if(recordHistory)history.add("NumStudent");
         recordHistory = true;
         String prompt = "How many students are you going to supervise?";
@@ -310,7 +309,7 @@ public class UserInterface {
     /**
      * let parent select number of children
      */
-    static String numChildren() throws IOException{
+    static String numChildren(){
         if(recordHistory)history.add("NumChildren");
         recordHistory = true;
         String prompt = "How many students are you registering or have registered to use this program?";
@@ -319,7 +318,7 @@ public class UserInterface {
     /**
      * let parents select child to associate with
      */
-    static String childUserName() throws IOException{
+    static String childUserName(){
         if(recordHistory)history.add("ChildUserName");
         recordHistory = true;
         String prompt = "Enter your student's username.";
@@ -329,7 +328,7 @@ public class UserInterface {
     /**
      * confirms user creation for student
      */
-    static void confirmStudent() throws IOException{
+    static void confirmStudent(){
         if(recordHistory)history.add("ConfirmStudent");
         recordHistory = true;
         String[] allowed = {"yes", "no"};
@@ -350,7 +349,7 @@ public class UserInterface {
     /**
      * confirm user creation for teacher
      */
-    static void confirmTeacher() throws IOException{
+    static void confirmTeacher(){
         if(recordHistory)history.add("ConfirmTeacher");
         recordHistory = true;
         String[] allowed = {"yes", "no"};
@@ -371,7 +370,7 @@ public class UserInterface {
     /**
      * confirm user creation for parent
      */
-    static void confirmParent() throws IOException{
+    static void confirmParent(){
         if(recordHistory)history.add("confirmParent");
         recordHistory = true;
         String[] allowed = {"yes", "no"};
@@ -390,7 +389,7 @@ public class UserInterface {
     /**
      * student menu after logging in
      */
-    static void studentMenu() throws IOException{
+    static void studentMenu(){
         if(recordHistory)history.add("StudentMenu");
         recordHistory = true;
         String[] allowed = {"1","2"};
@@ -406,7 +405,7 @@ public class UserInterface {
     /**
      * teacher menu after logging in
      */
-    static void teacherMenu() throws IOException{
+    static void teacherMenu(){
         if(recordHistory)history.add("TeacherMenu");
         recordHistory = true;
         String[] allowed = {"1","2","3"};
@@ -423,7 +422,7 @@ public class UserInterface {
     /**
      * parent menu after logging in
      */
-    static void parentMenu() throws IOException{
+    static void parentMenu(){
         if(recordHistory)history.add("ParentMenu");
         recordHistory = true;
         String[] allowed = {"1","2"};
@@ -439,7 +438,7 @@ public class UserInterface {
     /**
      * quiz for student
      */
-    static void quiz() throws IOException{
+    static void quiz(){
         if(recordHistory)history.add("Quiz");
         recordHistory = true;
         String[] allowed = {"1","2","3","4","5"};
@@ -495,7 +494,7 @@ public class UserInterface {
     /**
      * print report for children
      */
-    static void printReport() throws IOException{
+    static void printReport(){
         if(recordHistory)history.add("PrintReport");
         recordHistory = true;
         String prompt = "Please enter in a username to see report";
